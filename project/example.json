@@ -1,0 +1,110 @@
+{
+  "size":3,
+  "wall_color": "blue",
+  "agent": {
+    "x": 1,
+    "y": 1,
+    "orientation": "N",
+    "color" : "white"
+  },
+  "start_squares": [
+    {
+      "x": 1,
+      "y": 2,
+      "color": "red",
+      "wall" : false
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "color": "blue",
+      "wall" : false
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "color": "white",
+      "wall" : false
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "color": "black",
+      "wall" : false
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "color": "red",
+      "wall" : false
+    },
+    {
+      "x": 3,
+      "y": 1,
+      "color": "red",
+      "wall" : false
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "color": "blue",
+      "wall" : false
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "color": "green",
+      "wall" : false
+    }
+  ],
+  "winning_squares": [
+    {
+      "x": 1,
+      "y": 2,
+      "color": "red",
+      "wall" : false
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "color": "blue",
+      "wall" : false
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "color": "white",
+      "wall" : false
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "color": "black",
+      "wall" : false
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "color": "red",
+      "wall" : false
+    },
+    {
+      "x": 3,
+      "y": 1,
+      "color": "red",
+      "wall" : false
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "color": "blue",
+      "wall" : false
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "color": "green",
+      "wall" : false
+    }
+  ]
+}
