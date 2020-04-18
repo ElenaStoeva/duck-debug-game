@@ -1,13 +1,4 @@
-open Grid.ml
-
 exception Invalid
-
-type square = {
-  x : int;
-  y : int;
-  current_color: Grid.color;
-  obstacle: bool;
-}
 
 type agent = {
   x : int;
@@ -17,7 +8,7 @@ type agent = {
 
 type t = {
   agent: agent;
-  current_grid : square list;
+  current_grid : Grid.square list;
   score : int;
 }
 
@@ -28,7 +19,7 @@ let init_state g = {
 }
 
 let helper_move st g =
-  if st.current_orien = "north" && (st.agent.y > 1) then
+  if st.current_orien = "north" && (st.agent.y < 1) then
     {x=st.agent.x; y=st.agent.y+1; current_orien = st.agent.current_orien;}
   else if st.current_orien = "south" && (st.agent.y < Grid.get_size g) then
     {x=st.agent.x; y=st.agent.y-1; current_orien = st.agent.current_orien;}
@@ -47,3 +38,4 @@ let move st g = {
 let turn command st = failwith "Unimplemented"
 
 let get_score st = st.score
+

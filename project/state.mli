@@ -6,23 +6,24 @@
    each square and functions that cause the state to change.
 *)
 
-(** The abstract type of values representing the game state. *)
-type t 
 
-(** Raised when a move cannot be performed. *)
-exception Invalid
+  (** The abstract type of values representing the game state. *)
+  type t 
 
-(** [init_state g] is the initial state of the game when playing grid [g]. 
-    In that state the agent is currently located in its initial square,
-    and they grid has its initial state as well. *)
-val init_state : Grid.t -> t
+  (** Raised when a move cannot be performed. *)
+  exception Invalid
 
-(** [move st] changes the position of the agent and returns a new state.*)
-val move : t -> t
+  (** [init_state g] is the initial state of the game when playing grid [g]. 
+      In that state the agent is currently located in its initial square,
+      and they grid has its initial state as well. *)
+  val init_state : Grid.t -> t
 
-(** [turn st] changes the orientation of the agent and returns a new state.*)
-val turn : t -> t
+  (** [move st] changes the position of the agent and returns a new state.*)
+  val move : t -> t
 
-(** [get_score st] is the current score of the player. *)
-val get_score : t -> int
+  (** [turn st] changes the orientation of the agent and returns a new state.*)
+  val turn : t -> t
+
+  (** [get_score st] is the current score of the player. *)
+  val get_score : t -> int
 
