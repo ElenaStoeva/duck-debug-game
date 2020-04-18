@@ -1,6 +1,6 @@
 {
   "size":3,
-  "wall_color": "blue",
+  "obstacle_color": "blue",
   "agent": {
     "x": 1,
     "y": 1,
@@ -12,49 +12,49 @@
       "x": 1,
       "y": 2,
       "color": "red",
-      "wall" : false
+      "obstacle" : false
     },
     {
       "x": 1,
       "y": 3,
       "color": "blue",
-      "wall" : false
+      "obstacle" : false
     },
     {
       "x": 2,
       "y": 1,
       "color": "white",
-      "wall" : false
+      "obstacle" : false
     },
     {
       "x": 2,
       "y": 2,
       "color": "black",
-      "wall" : false
+      "obstacle" : false
     },
     {
       "x": 2,
       "y": 3,
       "color": "red",
-      "wall" : false
+      "obstacle" : false
     },
     {
       "x": 3,
       "y": 1,
       "color": "red",
-      "wall" : false
+      "obstacle" : false
     },
     {
       "x": 3,
       "y": 2,
       "color": "blue",
-      "wall" : false
+      "obstacle" : false
     },
     {
       "x": 3,
       "y": 3,
       "color": "green",
-      "wall" : false
+      "obstacle" : false
     }
   ],
   "winning_squares": [
@@ -62,49 +62,49 @@
       "x": 1,
       "y": 2,
       "color": "red",
-      "wall" : false
+      "obstacle" : false
     },
     {
       "x": 1,
       "y": 3,
       "color": "blue",
-      "wall" : false
+      "obstacle" : false
     },
     {
       "x": 2,
       "y": 1,
       "color": "white",
-      "wall" : false
+      "obstacle" : false
     },
     {
       "x": 2,
       "y": 2,
       "color": "black",
-      "wall" : false
+      "obstacle" : false
     },
     {
       "x": 2,
       "y": 3,
       "color": "red",
-      "wall" : false
+      "obstacle" : false
     },
     {
       "x": 3,
       "y": 1,
       "color": "red",
-      "wall" : false
+      "obstacle" : false
     },
     {
       "x": 3,
       "y": 2,
       "color": "blue",
-      "wall" : false
+      "obstacle" : false
     },
     {
       "x": 3,
       "y": 3,
       "color": "green",
-      "wall" : false
+      "obstacle" : false
     }
   ]
 }
