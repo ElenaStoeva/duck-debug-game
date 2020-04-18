@@ -1,16 +1,17 @@
 (** The type of commands in language *)
 
 
-type identifier = string
+(* type identifier = Id of string *)
 
 type command =
   | Move
   | Right
   | Left
   | Color of int
-  | App of identifier
+  | App of string (* identifier *)
 
-type definition = Fun of (identifier * command list)
+
+type definition = Def of string * (command list)
 
 (** The type of the abstract syntax tree (AST) *)
-type program = (definition list * command list)
+type program = Prog of (definition list) * (command list)

@@ -1,0 +1,6 @@
+#directory "_build";;
+#load "lexer.cmo";;
+#load "parser.cmo";;
+#load "eval.cmo";;
+open Ast;;
+open Eval;;
