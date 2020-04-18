@@ -2,7 +2,9 @@ open Yojson
 
 type color = string
 
-type orientation = string
+type orientation = N|S|E|W
+
+exception Invalid_orient
 
 type square = {
   x : int;
@@ -33,10 +35,17 @@ let square_of_json json = {
   obstacle = Yojson.Basic.Util.(json |> member "obstacle" |> to_bool);
 }
 
+let orientation_of_string orient = match orient with
+  | "N" -> N
+  | "S" -> S
+  | "E" -> E
+  | "W" -> W
+  | _ -> raise Invalid_orient
+
 let agent_of_json json = {
   x = Yojson.Basic.Util.(json |> member "x" |> to_int);
   y = Yojson.Basic.Util.(json |> member "y" |> to_int);
-  orientation = Yojson.Basic.Util.(json |> member "orientation" |> to_string);
+  orientation = Yojson.Basic.Util.(json |> member "orientation" |> to_string |> orientation_of_string);
   color = Yojson.Basic.Util.(json |> member "color" |> to_string);
 }
 

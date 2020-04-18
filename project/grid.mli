@@ -17,7 +17,10 @@ type square
 type color = string
 
 (** The type of the agent's orientation *)
-type orientation = string
+type orientation = N|S|E|W
+
+(** The exception that is raised when the orientation string is not valid. *)
+exception Invalid_orient
 
 (** [from_json j] is the grid that [j] represents.
     Requires: [j] is a valid JSON grid representation. *)
