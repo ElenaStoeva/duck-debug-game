@@ -1,60 +1,60 @@
 {
-  "size":3,
+  "size": 3,
   "obstacle_color": "blue",
   "agent": {
     "x": 1,
     "y": 1,
     "orientation": "N",
-    "color" : "white"
+    "color": "red"
   },
   "start_squares": [
     {
       "x": 1,
       "y": 2,
       "color": "red",
-      "obstacle" : false
+      "obstacle": false
     },
     {
       "x": 1,
       "y": 3,
       "color": "blue",
-      "obstacle" : false
+      "obstacle": false
     },
     {
       "x": 2,
       "y": 1,
-      "color": "white",
-      "obstacle" : false
+      "color": "green",
+      "obstacle": false
     },
     {
       "x": 2,
       "y": 2,
-      "color": "black",
-      "obstacle" : false
+      "color": "blue",
+      "obstacle": false
     },
     {
       "x": 2,
       "y": 3,
       "color": "red",
-      "obstacle" : false
+      "obstacle": false
     },
     {
       "x": 3,
       "y": 1,
       "color": "red",
-      "obstacle" : false
+      "obstacle": false
     },
     {
       "x": 3,
       "y": 2,
       "color": "blue",
-      "obstacle" : false
+      "obstacle": false
     },
     {
       "x": 3,
       "y": 3,
       "color": "green",
-      "obstacle" : false
+      "obstacle": false
     }
   ],
   "winning_squares": [
@@ -62,49 +62,49 @@
       "x": 1,
       "y": 2,
       "color": "red",
-      "obstacle" : false
+      "obstacle": false
     },
     {
       "x": 1,
       "y": 3,
       "color": "blue",
-      "obstacle" : false
+      "obstacle": false
     },
     {
       "x": 2,
       "y": 1,
-      "color": "white",
-      "obstacle" : false
+      "color": "red",
+      "obstacle": false
     },
     {
       "x": 2,
       "y": 2,
-      "color": "black",
-      "obstacle" : false
+      "color": "green",
+      "obstacle": false
     },
     {
       "x": 2,
       "y": 3,
       "color": "red",
-      "obstacle" : false
+      "obstacle": false
     },
     {
       "x": 3,
       "y": 1,
       "color": "red",
-      "obstacle" : false
+      "obstacle": false
     },
     {
       "x": 3,
       "y": 2,
       "color": "blue",
-      "obstacle" : false
+      "obstacle": false
     },
     {
       "x": 3,
       "y": 3,
       "color": "green",
-      "obstacle" : false
+      "obstacle": false
     }
   ]
 }

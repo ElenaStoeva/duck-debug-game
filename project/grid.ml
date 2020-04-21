@@ -1,15 +1,17 @@
 open Yojson
 
-type color = string
+type color = Red | Green | Blue
 
 type orientation = N|S|E|W
 
 exception Invalid_orient
 
+exception Invalid_color
+
 type square = {
   x : int;
   y : int;
-  color: string;
+  color: color;
   obstacle: bool;
 }
 
@@ -17,7 +19,7 @@ type agent = {
   x : int;
   y: int;
   orientation: orientation;
-  color: string;
+  color: color;
 }
 
 type t = {
@@ -28,10 +30,16 @@ type t = {
   final_grid : square list;
 }
 
+let color_of_string color = match color with
+  | "red" -> Red
+  | "green" -> Green
+  | "blue" -> Blue
+  | _ -> raise Invalid_color
+
 let square_of_json json = {
   x = Yojson.Basic.Util.(json |> member "x" |> to_int);
   y = Yojson.Basic.Util.(json |> member "y" |> to_int);
-  color = Yojson.Basic.Util.(json |> member "color" |> to_string);
+  color = Yojson.Basic.Util.(json |> member "color" |> to_string |> color_of_string);
   obstacle = Yojson.Basic.Util.(json |> member "obstacle" |> to_bool);
 }
 
@@ -46,12 +54,12 @@ let agent_of_json json = {
   x = Yojson.Basic.Util.(json |> member "x" |> to_int);
   y = Yojson.Basic.Util.(json |> member "y" |> to_int);
   orientation = Yojson.Basic.Util.(json |> member "orientation" |> to_string |> orientation_of_string);
-  color = Yojson.Basic.Util.(json |> member "color" |> to_string);
+  color = Yojson.Basic.Util.(json |> member "color" |> to_string |> color_of_string);
 }
 
 let from_json json = {
   size = Yojson.Basic.Util.(json |> member "size" |> to_int);
-  obstacle_color = Yojson.Basic.Util.(json |> member "obstacle_color" |> to_string);
+  obstacle_color = Yojson.Basic.Util.(json |> member "obstacle_color" |> to_string |> color_of_string);
   agent = agent_of_json json;
   start_grid = Yojson.Basic.Util.(json |> member "start_squares" |> to_list |> List.map square_of_json);
   final_grid = Yojson.Basic.Util.(json |> member "winning_squares" |> to_list |> List.map square_of_json);
@@ -67,3 +75,10 @@ let get_start_grid g = g.start_grid
 
 let get_size g = g.size
 
+let get_square_x (s:square) = s.x
+
+let get_square_y (s:square) = s.y
+
+let is_obstacle (s:square) = s.obstacle
+
+let color_square (s:square) color = {x=s.x;y=s.y;color=color;obstacle=s.obstacle}

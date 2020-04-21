@@ -7,23 +7,25 @@
 *)
 
 
-  (** The abstract type of values representing the game state. *)
-  type t 
+(** The abstract type of values representing the game state. *)
+type t 
 
-  (** Raised when a move cannot be performed. *)
-  exception Invalid
+(** Raised when a move cannot be performed. *)
+exception Invalid
 
-  (** [init_state g] is the initial state of the game when playing grid [g]. 
-      In that state the agent is currently located in its initial square,
-      and they grid has its initial state as well. *)
-  val init_state : Grid.t -> t
+type direction = Right | Left
 
-  (** [move st] changes the position of the agent and returns a new state.*)
-  val move : t -> t
+(** [init_state g] is the initial state of the game when playing grid [g]. 
+    In that state the agent is currently located in its initial square,
+    and they grid has its initial state as well. *)
+val init_state : Grid.t -> t
 
-  (** [turn st] changes the orientation of the agent and returns a new state.*)
-  val turn : t -> t
+(** [move st] changes the position of the agent and returns a new state.*)
+val move : t -> t
 
-  (** [get_score st] is the current score of the player. *)
-  val get_score : t -> int
+(** [turn command st] changes the orientation of the agent and returns a new state.*)
+val turn : direction -> t ->  t
+
+(** [color command st] changes the orientation of the agent and returns a new state.*)
+val color : Grid.color -> t -> t
 

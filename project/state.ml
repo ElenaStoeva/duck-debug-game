@@ -1,5 +1,7 @@
 exception Invalid
 
+type direction = Right | Left (* This should come from the interpreter *)
+
 type agent = {
   x : int;
   y: int;
@@ -16,24 +18,44 @@ let init_state g = {
   current_grid = Grid.get_start_grid g;
 }
 
-
-let helper_move st g =
-  if st.agent.current_orien = N && (st.agent.y < 1) then
-    {x=st.agent.x; y=st.agent.y+1; current_orien = st.agent.current_orien;}
-  else if st.agent.current_orien = S && (st.agent.y < Grid.get_size g) then
-    {x=st.agent.x; y=st.agent.y-1; current_orien = st.agent.current_orien;}
-  else if st.agent.current_orien = E && (st.agent.x < Grid.get_size g) then
-    {x=st.agent.x+1; y=st.agent.y; current_orien = st.agent.current_orien;}
+let new_position_x st g =
+  if st.agent.current_orien = E && (st.agent.x < Grid.get_size g) then
+    st.agent.x+1
   else if st.agent.current_orien = W && (st.agent.x > 1) then
-    {x=st.agent.x-1; y=st.agent.y; current_orien = st.agent.current_orien;}
+    st.agent.x-1
+  else raise Invalid
+
+let new_position_y st g =
+  if st.agent.current_orien = N && (st.agent.y < 1) then
+    st.agent.y+1
+  else if st.agent.current_orien = S && (st.agent.y < Grid.get_size g) then
+    st.agent.y-1
   else raise Invalid
 
 let move st g = {
-  agent = (helper_move st g); (* Will simplify this *)
+  agent = {x=new_position_x st g; y=new_position_y st g; current_orien = st.agent.current_orien; };
   current_grid = st.current_grid;
 }
 
-let turn command st = failwith "Unimplemented"
+let new_orien direction st =
+  match direction with
+  | Right -> if st.agent.current_orien = N then Grid.E else W
+  | Left -> if st.agent.current_orien = N then W else E
 
-let color command st = failwith "Unimplemented"
+let turn direction st = {
+  agent = {x=st.agent.x; y=st.agent.y; current_orien = new_orien direction st};
+  current_grid = st.current_grid;
+}
+
+let rec helper_color color x y grid acc =
+  match grid with
+  | [] -> acc
+  | h::t -> if (Grid.get_square_x h) = x && (Grid.get_square_y h) = y then 
+      helper_color color x y t ((Grid.color_square h color)::acc)
+    else helper_color color x y t (h::acc)
+
+let color color st = {
+  agent = st.agent;
+  current_grid = (helper_color color st.agent.x st.agent.y st.current_grid []);
+}
 
