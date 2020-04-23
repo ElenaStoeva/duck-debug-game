@@ -49,5 +49,3 @@ let init_stream prog =
   match prog with
   | Prog ([], x) -> list_to_stream [] x
   | Prog (ds, x) -> list_to_stream (defs_to_env ds) x
-
-
