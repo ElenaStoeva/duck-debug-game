@@ -42,7 +42,27 @@ let rec defs_to_env ds =
   | [] -> []
   | Def(d,e)::t -> (d,e)::(defs_to_env t)
 
-(** precondition: correct program *)
+(* TODO: Func to check infinite mutual recursion in function applications. *)
+let rec app_to_lst x acc =
+  match x with
+  |[] -> acc
+  |App (id)::t -> app_to_lst t (id::acc)
+  |_::t -> app_to_lst t acc
+
+let rec def_to_lst ds acc =
+  match ds with
+  |[] -> acc
+  |Def (id,_)::t -> def_to_lst t (id::acc)
+
+let has_def (Prog(ds, x)) =
+  let app_lst = app_to_lst x [] in
+  let def_lst = def_to_lst ds [] in
+  let ast_ok = List.fold_left 
+      (fun bool elt -> bool && (List.mem elt def_lst)) true app_lst in
+  if ast_ok then Prog(ds, x)
+  else failwith "All function applications are not defined."
+
+(** precondition: correct program. "f = [f]; [f]" not allowed. *)
 let init_stream prog = 
   match prog with
   | Prog ([], x) -> list_to_stream [] x
