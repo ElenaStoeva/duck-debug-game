@@ -22,10 +22,8 @@ let rec prepend env (lst : command list) str =
   | [] -> str
   | App (id) :: t -> prepend env (List.assoc id env) (prepend env t str)
   | h::t -> Cons(h, lazy (prepend env t str))
-and list_to_stream (env : env) = function
-  | [] -> End
-  | App (id) :: t -> prepend env (List.assoc id env) (list_to_stream env t)
-  | h :: t -> Cons (h, lazy (list_to_stream env t))
+
+let rec list_to_stream env lst = prepend env lst End
 
 let hd str = match str with 
   | End -> failwith ("Empty stream, cannot apply hd. ")
@@ -49,3 +47,11 @@ let init_stream prog =
   match prog with
   | Prog ([], x) -> list_to_stream [] x
   | Prog (ds, x) -> list_to_stream (defs_to_env ds) x
+
+let rec take_aux n x lst = 
+  if n = 0 then lst
+  else match x with
+    | End -> lst
+    | Cons(h,t) -> take_aux (n-1) (Lazy.force t) (h::lst) 
+
+let take n s = List.rev (take_aux n s [])
