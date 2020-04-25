@@ -1,0 +1,14 @@
+PKG oUnit
+PKG yojson
+
+S src
+S src/interpreter
+S src/model
+S src/view
+S src/tests
+
+B _build/src
+B _build/src/interpreter
+B _build/src/model
+B _build/src/view
+B _build/src/tests

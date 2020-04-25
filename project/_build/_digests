@@ -1,7 +1,0 @@
-"Rule: ocaml: cmo* -> byte (%=grid )": "\157N\217\190Mw:I_hx#\200%\189@"
-"Resource: /mnt/c/users/elena/onedrive/desktop/cs3110-project/project/grid.ml": "*{\165)\205\198\246\130\004,\235\205\"\220\220\127"
-"Resource: /mnt/c/users/elena/onedrive/desktop/cs3110-project/project/grid.mli": "\218\232\237r\027\241`\127Sw_\255\135\172[\011"
-"Rule: ocaml dependencies ml (%=grid )": "\183.\154\238\232\198\198\177;\225\191\184\139\011*4"
-"Rule: ocaml: mli -> cmi (%=grid )": "\190\253\189ft\150\195\193\187\213\004\030[V\tw"
-"Rule: ocaml dependencies mli (%=grid )": "I\206\137P@\1400\237\031\190\19549X\174\184"
-"Rule: ocaml: ml & cmi -> cmo (%=grid )": "\"\201\0010\138\2142,\143\166\162N\158)m\153"

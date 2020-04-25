@@ -3,27 +3,32 @@
 
    This module represents the data stored in grid files, including the initial 
    and the final state of the grid as well as the initial position of the agent.
-     It handles loading of that data from JSON as well
-   as querying the data.
+   It handles loading of that data from JSON as well
+   as querying the data. The grid is stored with the origin in the lower left
+   corner and a a vertical positive y, horizonatal positive x direction.
 *)
 
 (** The abstract type of values representing grids. *)
 type t
 
-(** The type of a square*)
-type square
+(** The type of attributes. *)
+type attribute = Red | Green | Blue | Wall
 
-(** The type of colors *)
-type color = Red | Green | Blue
+(** The type of a square. *)
+type square = {
+  square_x : int;
+  square_y : int;
+  attribute : attribute
+}
 
 (** The type of the agent's orientation *)
-type orientation = N|S|E|W
+type orientation = N | S | E | W
 
 (** The exception that is raised when the orientation string is not valid. *)
 exception Invalid_orient
 
-(** The exception that is raised when the color string is not valid. *)
-exception Invalid_color
+(** The exception that is raised when the attribute string is not valid. *)
+exception Invalid_attribute
 
 (** [from_json j] is the grid that [j] represents.
     Requires: [j] is a valid JSON grid representation. *)
@@ -50,8 +55,6 @@ val get_square_x : square -> int
 (** [get_square_y s] is the y-coordinate of square [s] *)
 val get_square_y : square -> int
 
-(** [is_obstacle s] is true if square [s] is an obstacle *)
-val is_obstacle : square -> bool
-
-(** [color_square s color] is the square [s] but with color [color] *)
-val color_square : square -> color -> square
+(** [update_square_att s a] is the square [s] but with 
+    attribute [a]. *)
+val update_square_att : square -> attribute -> square

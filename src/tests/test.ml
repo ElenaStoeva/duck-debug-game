@@ -20,7 +20,7 @@ let make_stream_test
     (name : string)
     (program : string)
     (n_moves : int)
-    (expected_moves : command list) : test =
+    (expected_moves : prim_move list) : test =
   name >:: (fun _ ->
       assert_equal expected_moves 
         (program |> parse |> init_stream |> take n_moves))

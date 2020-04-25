@@ -1,0 +1,12 @@
+#use "topfind"
+#directory "_build/src/interpreter";;
+#require "oUnit";;
+#require "yojson";;
+#load "lexer.cmo";;
+#load "parser.cmo";;
+#load "eval.cmo";;
+#directory "_build/src/model";;
+#load "grid.cmo";;
+#load "state.cmo";;
+#directory "_build/src/view";;
+#load "print.cmo";;
