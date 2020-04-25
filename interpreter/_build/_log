@@ -1,0 +1,35 @@
+### Starting build.
+# Target: test.ml.depends, tags: { package(oUnit), debug, extension:ml, file:test.ml, ocaml, ocamldep, quiet, traverse, use_menhir }
+ocamlfind ocamldep -package oUnit -modules test.ml > test.ml.depends
+# Target: ast.ml.depends, tags: { package(oUnit), debug, extension:ml, file:ast.ml, ocaml, ocamldep, quiet, traverse, use_menhir }
+ocamlfind ocamldep -package oUnit -modules ast.ml > ast.ml.depends # cached
+# Target: eval.ml.depends, tags: { package(oUnit), debug, extension:ml, file:eval.ml, ocaml, ocamldep, quiet, traverse, use_menhir }
+ocamlfind ocamldep -package oUnit -modules eval.ml > eval.ml.depends # cached
+# Target: ast.cmo, tags: { package(oUnit), byte, compile, debug, extension:cmo, extension:ml, file:ast.cmo, file:ast.ml, implem, ocaml, quiet, traverse, use_menhir }
+ocamlfind ocamlc -c -g -package oUnit -o ast.cmo ast.ml
+# Target: lexer.mll, tags: { package(oUnit), debug, extension:mll, file:lexer.mll, lexer, ocaml, ocamllex, quiet, traverse, use_menhir }
+/Users/yagmurdulger/.opam/4.09.0/bin/ocamllex.opt -q lexer.mll # cached
+# Target: lexer.ml.depends, tags: { package(oUnit), debug, extension:ml, file:lexer.ml, ocaml, ocamldep, quiet, traverse, use_menhir }
+ocamlfind ocamldep -package oUnit -modules lexer.ml > lexer.ml.depends # cached
+# Target: parser.mly.depends, tags: { package(oUnit), debug, extension:mly, file:parser.mly, infer, menhir_ocamldep, ocaml, ocamldep, quiet, traverse, use_menhir }
+menhir --raw-depend --ocamldep 'ocamlfind ocamldep -modules' parser.mly > parser.mly.depends # cached
+# Target: parser.mly, tags: { package(oUnit), byte, compile, debug, extension:ml, extension:mly, file:parser.ml, file:parser.mly, infer, menhir, ocaml, parser, quiet, traverse, use_menhir }
+menhir --ocamlc 'ocamlfind ocamlc -g -package oUnit' --infer parser.mly
+# Target: parser.mli.depends, tags: { package(oUnit), debug, extension:mli, file:parser.mli, ocaml, ocamldep, quiet, traverse, use_menhir }
+ocamlfind ocamldep -package oUnit -modules parser.mli > parser.mli.depends # cached
+# Target: parser.cmi, tags: { package(oUnit), byte, compile, debug, extension:mli, file:parser.mli, interf, ocaml, quiet, traverse, use_menhir }
+ocamlfind ocamlc -c -g -package oUnit -o parser.cmi parser.mli
+# Target: lexer.cmo, tags: { package(oUnit), byte, compile, debug, extension:cmo, extension:ml, file:lexer.cmo, file:lexer.ml, implem, ocaml, quiet, traverse, use_menhir }
+ocamlfind ocamlc -c -g -package oUnit -o lexer.cmo lexer.ml
+# Target: eval.cmo, tags: { package(oUnit), byte, compile, debug, extension:cmo, extension:ml, file:eval.cmo, file:eval.ml, implem, ocaml, quiet, traverse, use_menhir }
+ocamlfind ocamlc -c -g -package oUnit -o eval.cmo eval.ml
+# Target: test.cmo, tags: { package(oUnit), byte, compile, debug, extension:cmo, extension:ml, file:test.cmo, file:test.ml, implem, ocaml, quiet, traverse, use_menhir }
+ocamlfind ocamlc -c -g -package oUnit -o test.cmo test.ml
++ ocamlfind ocamlc -c -g -package oUnit -o test.cmo test.ml
+File "test.ml", line 33, characters 33-72:
+33 |       assert_equal expected_head (program |> parse |> init_stream |> hd))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error: This expression has type Eval.prim_move
+       but an expression was expected of type exn
+Command exited with code 2.
+# Compilation unsuccessful.
