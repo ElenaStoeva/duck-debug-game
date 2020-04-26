@@ -39,14 +39,14 @@ let make_stream_test
       assert_equal expected_moves 
         (program |> parse |> init_stream |> take n_moves))
 
-let make_has_def_test
+let make_check_ast_test
     (name : string)
     (program : string)
     (expected_ast : program) : test =
   name >:: (fun _ ->
-      assert_equal expected_ast (program |> parse |> has_def))
+      assert_equal expected_ast (program |> parse |> check_ast))
 
-(** TODO: Test exception raising in hd, tl, and has_def. 
+(** TODO: Test exception raising in hd, tl, and check_ast. 
     Test mutual recursion.*)
 let eval_tests = [
   make_stream_test "Empty stream" "" 0 []; 
@@ -55,9 +55,9 @@ let eval_tests = [
   make_stream_test "Taking more than stream length" "MMRML" 10 [M; M; R; M; L];
   make_stream_test "Func application stream" "f=MRM;[f]" 3 [M; R; M];
   make_stream_test "Infinite stream" "f=MRM[f];[f]" 7 [M; R; M; M; R; M; M];
-  make_has_def_test "No func has_def" "MMRML" (parse "MMRML");
-  make_has_def_test "Func application has_def" "f=MRM;[f]" (parse "f=MRM;[f]");
-  make_has_def_test "Infinite stream has_def" "f=MRM[f];[f]" 
+  make_check_ast_test "No func check_ast" "MMRML" (parse "MMRML");
+  make_check_ast_test "Func application check_ast" "f=MRM;[f]" (parse "f=MRM;[f]");
+  make_check_ast_test "Infinite stream check_ast" "f=MRM[f];[f]" 
     (parse "f=MRM[f];[f]");
 ]
 

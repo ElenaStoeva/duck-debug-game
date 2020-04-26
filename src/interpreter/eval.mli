@@ -6,6 +6,12 @@ exception Empty_stream
 (** Raised if stream has non-evaluated values. *)
 exception Malformed_stream
 
+(** Raised if function applied has no definition. *)
+exception Undefined_function
+
+(** Raised if the color command is not valid. *)
+exception Undefined_color
+
 (** Type of a primitive move. *)
 type prim_move =
   | M
@@ -34,10 +40,12 @@ val tl : move_stream -> move_stream
 (** [take n m] is the list of first [n] primitive moves in move stream [m]. *)
 val take : int -> move_stream -> prim_move list
 
-(** [init_stream p] is the move stream created by evaluation program [p]. *)
+(** [init_stream p] is the move stream created by evaluation program [p].
+    Requires that [p] passes [check_ast]. *)
 val init_stream : Ast.program -> move_stream
 
-(** [has_def p] is [p] if all function applications in [p] are defined, 
-    else raises exception. *)
-val has_def : Ast.program -> Ast.program
+(** [check_ast prog] is prog after performing semantic checking.
+    Raises [Undefined_function] is there is an unbound function application.
+    Raises [Undefined_color] if the color command used is not defined. *)
+val check_ast : Ast.program -> Ast.program
 
