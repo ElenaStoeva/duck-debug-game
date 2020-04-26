@@ -23,7 +23,7 @@ val parse : string -> Ast.program
 val empty : move_stream
 
 (** [hd m] is the next element of move stream [m]. 
-    Raises [Empty_stream] is [m] is empty and raises [Malformed_stream] if
+    Raises [Empty_stream] is [m] if empty and raises [Malformed_stream] if
     [m]] has non-evaluated values. *)
 val hd : move_stream -> prim_move
 
@@ -36,4 +36,8 @@ val take : int -> move_stream -> prim_move list
 
 (** [init_stream p] is the move stream created by evaluation program [p]. *)
 val init_stream : Ast.program -> move_stream
+
+(** [has_def p] is [p] if all function applications in [p] are defined, 
+    else raises exception. *)
+val has_def : Ast.program -> Ast.program
 
