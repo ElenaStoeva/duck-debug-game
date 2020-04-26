@@ -1,16 +1,16 @@
 {
-  "instructions": "Draw the letter C in red color.",
-  "size": 7,
+  "instructions": "Draw a 3x3 square in blue color.",
+  "size": 5,
   "agent": {
-    "agent_x": 6,
-    "agent_y": 6,
+    "agent_x": 2,
+    "agent_y": 2,
     "orientation": "N"
   },
   "start_squares": [
     {
       "x": 1,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
@@ -20,7 +20,7 @@
     {
       "x": 1,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
@@ -30,17 +30,7 @@
     {
       "x": 1,
       "y": 5,
-      "attribute": "blue"
-    },
-    {
-      "x": 1,
-      "y": 6,
       "attribute": "green"
-    },
-    {
-      "x": 1,
-      "y": 7,
-      "attribute": "blue"
     },
     {
       "x": 2,
@@ -50,7 +40,7 @@
     {
       "x": 2,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 2,
@@ -60,7 +50,7 @@
     {
       "x": 2,
       "y": 4,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 2,
@@ -68,19 +58,9 @@
       "attribute": "green"
     },
     {
-      "x": 2,
-      "y": 6,
-      "attribute": "blue"
-    },
-    {
-      "x": 2,
-      "y": 7,
-      "attribute": "green"
-    },
-    {
       "x": 3,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 3,
@@ -90,7 +70,7 @@
     {
       "x": 3,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 3,
@@ -100,17 +80,7 @@
     {
       "x": 3,
       "y": 5,
-      "attribute": "blue"
-    },
-    {
-      "x": 3,
-      "y": 6,
       "attribute": "green"
-    },
-    {
-      "x": 3,
-      "y": 7,
-      "attribute": "blue"
     },
     {
       "x": 4,
@@ -120,7 +90,7 @@
     {
       "x": 4,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 4,
@@ -130,7 +100,7 @@
     {
       "x": 4,
       "y": 4,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 4,
@@ -138,19 +108,9 @@
       "attribute": "green"
     },
     {
-      "x": 4,
-      "y": 6,
-      "attribute": "blue"
-    },
-    {
-      "x": 4,
-      "y": 7,
-      "attribute": "green"
-    },
-    {
       "x": 5,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
@@ -160,7 +120,7 @@
     {
       "x": 5,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
@@ -170,154 +130,54 @@
     {
       "x": 5,
       "y": 5,
-      "attribute": "blue"
-    },
-    {
-      "x": 5,
-      "y": 6,
       "attribute": "green"
-    },
-    {
-      "x": 5,
-      "y": 7,
-      "attribute": "blue"
-    },
-    {
-      "x": 6,
-      "y": 1,
-      "attribute": "green"
-    },
-    {
-      "x": 6,
-      "y": 2,
-      "attribute": "blue"
-    },
-    {
-      "x": 6,
-      "y": 3,
-      "attribute": "green"
-    },
-    {
-      "x": 6,
-      "y": 4,
-      "attribute": "blue"
-    },
-    {
-      "x": 6,
-      "y": 5,
-      "attribute": "green"
-    },
-    {
-      "x": 6,
-      "y": 6,
-      "attribute": "blue"
-    },
-    {
-      "x": 6,
-      "y": 7,
-      "attribute": "green"
-    },
-    {
-      "x": 7,
-      "y": 1,
-      "attribute": "blue"
-    },
-    {
-      "x": 7,
-      "y": 2,
-      "attribute": "green"
-    },
-    {
-      "x": 7,
-      "y": 3,
-      "attribute": "blue"
-    },
-    {
-      "x": 7,
-      "y": 4,
-      "attribute": "green"
-    },
-    {
-      "x": 7,
-      "y": 5,
-      "attribute": "blue"
-    },
-    {
-      "x": 7,
-      "y": 6,
-      "attribute": "green"
-    },
-    {
-      "x": 7,
-      "y": 7,
-      "attribute": "blue"
     }
   ],
   "winning_squares": [
     {
       "x": 2,
       "y": 2,
-      "attribute": "red"
+      "attribute": "blue"
     },
     {
       "x": 2,
       "y": 3,
-      "attribute": "red"
+      "attribute": "blue"
     },
     {
       "x": 2,
       "y": 4,
-      "attribute": "red"
-    },
-    {
-      "x": 2,
-      "y": 5,
-      "attribute": "red"
-    },
-    {
-      "x": 2,
-      "y": 6,
-      "attribute": "red"
+      "attribute": "blue"
     },
     {
       "x": 3,
-      "y": 1,
-      "attribute": "red"
-    },
-    {
-      "x": 3,
-      "y": 7,
-      "attribute": "red"
-    },
-    {
-      "x": 4,
-      "y": 1,
-      "attribute": "red"
-    },
-    {
-      "x": 4,
-      "y": 7,
-      "attribute": "red"
-    },
-    {
-      "x": 5,
-      "y": 1,
-      "attribute": "red"
-    },
-    {
-      "x": 5,
-      "y": 7,
-      "attribute": "red"
-    },
-    {
-      "x": 6,
       "y": 2,
-      "attribute": "red"
+      "attribute": "blue"
     },
     {
-      "x": 6,
-      "y": 6,
-      "attribute": "red"
+      "x": 3,
+      "y": 3,
+      "attribute": "blue"
+    },
+    {
+      "x": 3,
+      "y": 4,
+      "attribute": "blue"
+    },
+    {
+      "x": 4,
+      "y": 2,
+      "attribute": "blue"
+    },
+    {
+      "x": 4,
+      "y": 3,
+      "attribute": "blue"
+    },
+    {
+      "x": 4,
+      "y": 4,
+      "attribute": "blue"
     }
   ]
 }
