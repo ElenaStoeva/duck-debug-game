@@ -64,3 +64,7 @@ val get_square_att : square -> attribute
 (** [update_square_att s a] is the square [s] but with 
     attribute [a]. *)
 val update_square_att : square -> attribute -> square
+
+(** [get_instructions g] is a string which explains to the player what they
+    have to draw. *)
+val get_instructions : t -> string

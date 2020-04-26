@@ -19,6 +19,7 @@ type agent = {
 }
 
 type t = {
+  instructions: string;
   size : int;
   agent: agent;
   start_grid : square list;
@@ -70,6 +71,7 @@ let agent_of_json json = {
 }
 
 let from_json json = {
+  instructions = Yojson.Basic.Util.(json |> member "instructions" |> to_string);
   size = Yojson.Basic.Util.(json |> member "size" |> to_int);
   agent = Yojson.Basic.Util.(json |> member "agent" |> agent_of_json);
   start_grid = Yojson.Basic.Util.(
@@ -108,3 +110,5 @@ let update_square_att s att = {
   s with
   attribute = att;
 }
+
+let get_instructions g = g.instructions
