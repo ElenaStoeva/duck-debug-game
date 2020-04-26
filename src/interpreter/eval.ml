@@ -103,7 +103,7 @@ let has_def (Ast.Prog(ds, x)) =
 (** [has_color p] is [p] if all color commands are valid. Raises 
     [Undefined_color] if not. *)
 let has_color (Ast.Prog(ds, x)) =
-  let f = function Ast.Color(i) -> 0 <= i && i <= 2 | _ -> true in
+  let f = function Ast.Color(i) -> 1 <= i && i <= 3 | _ -> true in
   if List.for_all f x then Ast.Prog(ds, x)
   else raise Undefined_color
 

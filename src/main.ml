@@ -20,9 +20,9 @@ let match_move st = match State.move st with
 (** [color_of_int i] is the grid attribute corresponding to [i]. 
     Raises: [Failure] if [i] does not match valid color. *)
 let color_of_int i = match i with
-  | 0 -> Grid.Red
-  | 1 -> Grid.Green
-  | 2 -> Grid.Blue
+  | 1 -> Grid.Red
+  | 2 -> Grid.Green
+  | 3 -> Grid.Blue
   | _ -> failwith "\nNon-defined color. Color command ignored.\n"
 
 (** [match_prim st m] is the state after primitive move [m] is applied.

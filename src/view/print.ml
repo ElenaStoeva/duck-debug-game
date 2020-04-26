@@ -2,9 +2,9 @@
 (** [string_of_square att] is string "r", "b", "g", or "#" matching with grid 
     attribute [att]. *)
 let string_of_square (att : Grid.attribute) = match att with
-  | Red -> "0"
-  | Blue -> "1"
+  | Red -> "1"
   | Green -> "2"
+  | Blue -> "3"
   | Wall -> "#"
 
 let rec string_of_row lst = match lst with
