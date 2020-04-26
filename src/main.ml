@@ -5,9 +5,9 @@ let rec read_user_code st gr =
   Print.print_grid st gr;
   print_string "\nInput code:\n";
   match read_line () with
-  | str -> begin try str |> Eval.parse |> Eval.init_stream 
+  | str -> begin try str |> Eval.parse |> Eval.check_ast |> Eval.init_stream
       with e -> 
-        print_endline "\nInterpreting error. Please try again.\n"; 
+        print_endline "\nInterpreting error. Please fix your code.\n"; 
         read_user_code st gr end
 
 (** [match_move st] is the new game state after agent has moved, and [st] if 
@@ -20,10 +20,20 @@ let match_move st = match State.move st with
 (** [color_of_int i] is the grid attribute corresponding to [i]. 
     Raises: [Failure] if [i] does not match valid color. *)
 let color_of_int i = match i with
-  | 1 -> Grid.Red
-  | 2 -> Grid.Green
-  | 3 -> Grid.Blue
+  | 0 -> Grid.Red
+  | 1 -> Grid.Green
+  | 2 -> Grid.Blue
   | _ -> failwith "\nNon-defined color. Color command ignored.\n"
+
+(** [match_prim st m] is the state after primitive move [m] is applied.
+    Requires that [m] is not [None]. *)
+let match_prim st m = match m with
+  | Some Eval.M -> match_move st
+  | Some Eval.R -> State.turn State.Right st
+  | Some Eval.L -> State.turn State.Left st
+  | Some Eval.C (c) -> State.color (color_of_int c) st
+  | None -> failwith "Move stream malformed."
+
 
 (** [run_simulation st gr ms] prompts user and steps simulation of move stream 
     [ms] in game with valid grid [gr] and valid state [st], until player wins, 
@@ -38,22 +48,15 @@ let rec run_simulation st gr ms =
   else if hd_opt =  None 
   then print_endline "Your code terminated but you did not win :(\n"
   else 
-    let _ = print_string "\nPress n to step the simulation and q to quit.\n" in
+    let _ = print_string "\nPress (n) or (Enter) to step the simulation \
+                          and (q) to quit.\n" in
     let tl = Eval.tl ms in
     match read_line () with
     | "q" -> ()
-    | "s" -> () (* TODO: stop simulation *)
-    | "n" -> begin match hd_opt with
-        | Some Eval.M -> run_simulation (match_move st) gr tl
-        | Some Eval.R -> run_simulation (State.turn State.Right st) gr tl
-        | Some Eval.L -> run_simulation (State.turn State.Left st) gr tl
-        | Some Eval.C (c) -> begin 
-            try
-              run_simulation (State.color (color_of_int c) st) gr tl
-            with Failure msg -> print_string msg; run_simulation st gr tl
-          end
-        | None -> failwith "Move stream malformed."
-      end
+    (* | "s" -> () TODO: stop simulation *)
+    | ""
+    | "n" -> begin try run_simulation (match_prim st hd_opt) gr tl
+        with Failure msg -> print_string msg; run_simulation st gr tl end
     | _ -> print_string "\nInvalid command.\n"; run_simulation st gr ms
 
 (** [init_game ()] prompts user to enter level and initializes game with 
@@ -65,9 +68,10 @@ let rec init_game () =
     run_simulation st gr (read_user_code st gr) in
   match read_line () with
   | exception End_of_file -> ()
+  | "0" -> st_gr "json_files/example.json"
   | "1" -> st_gr "json_files/level1.json"
   | "2" -> st_gr "json_files/level2.json"
-  | "3" -> st_gr "json_files/example.json"
+  | "3" -> st_gr "json_files/level3.json"
   | "q" -> ()
   | _-> begin 
       print_string "\nUnrecognized level. Please enter valid command: \n"; 
@@ -84,7 +88,7 @@ let main () =
      '1' - Color Square Red\n'2' - Color Square Green\n'3' - Color Square Blue\n\
      'f=' - define function f\n'[f]' - call function f\n\
      ';' - seperator between function definitions.\n\
-     Please enter a level number (1,2,3) to play, or (q) to quit: \n";
+     Please enter a level number (0,1,2,3) to play, or (q) to quit: \n";
   init_game ()
 
 (* Execute the game engine. *)
