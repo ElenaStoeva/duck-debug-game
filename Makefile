@@ -1,4 +1,4 @@
-MODULES = lexer parser eval grid state print ast
+MODULES = lexer parser eval grid state print ast authors
 OBJECTS = $(MODULES:=.cmo)
 SRC_DIRS = -I src/interpreter -I src/model -I src/view -I src/tests -I src
 
