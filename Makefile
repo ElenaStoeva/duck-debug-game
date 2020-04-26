@@ -14,5 +14,9 @@ run:
 test:
 	ocamlbuild -use-ocamlfind -tag 'debug' $(SRC_DIRS) test.byte && ./test.byte
 
+zip:
+	zip -v -r project_src.zip ./src ./json_files _tags Makefile INSTALL.txt .ocamlinit .merlin
+
 clean:
 	ocamlbuild -clean
+	rm -rf project_src.zip
