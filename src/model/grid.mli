@@ -58,6 +58,9 @@ val get_square_x : square -> int
 (** [get_square_y s] is the y-coordinate of square [s] *)
 val get_square_y : square -> int
 
+(**[get_square_att s] is the attribute of square [s] *)
+val get_square_att : square -> attribute
+
 (** [update_square_att s a] is the square [s] but with 
     attribute [a]. *)
 val update_square_att : square -> attribute -> square

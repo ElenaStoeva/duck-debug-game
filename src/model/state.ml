@@ -99,6 +99,8 @@ let rec helper_list (glst : Grid.square list) acc = match glst with
 
 let to_list st = helper_list st.current_grid []
 
+(**[helper_check_win] is true if each square in [winning_grid] is in the 
+   list [current_grid] *)
 let rec helper_check_win winning_grid current_grid =
   match winning_grid with
   | [] -> true

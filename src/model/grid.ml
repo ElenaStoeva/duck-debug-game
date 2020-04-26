@@ -25,13 +25,17 @@ type t = {
   final_grid : square list;
 }
 
-let attribute_of_string color = match color with
+(**[attribute_of_string color] is the type of the attribute represented by
+   the string [attribute] *)
+let attribute_of_string attribute = match attribute with
   | "red" -> Red
   | "green" -> Green
   | "blue" -> Blue
   | "wall" -> Wall
   | _ -> raise Invalid_attribute
 
+(**[square_of_json json] is a record of a square that is represented in the 
+   json [json] *)
 let square_of_json json = {
   square_x = Yojson.Basic.Util.(json |> member "x" |> to_int);
   square_y = Yojson.Basic.Util.(json |> member "y" |> to_int);
@@ -43,6 +47,8 @@ let square_of_json json = {
     );
 }
 
+(**[orientation_of_string orient] is the type of the orientation represented
+   by the string [orient] *)
 let orientation_of_string orient = match orient with
   | "N" -> N
   | "S" -> S
@@ -50,6 +56,8 @@ let orientation_of_string orient = match orient with
   | "W" -> W
   | _ -> raise Invalid_orient
 
+(**[agent_of_json json] is a record of an agent that is represented in the 
+   json [json] *)
 let agent_of_json json = {
   agent_x = Yojson.Basic.Util.(json |> member "agent_x" |> to_int);
   agent_y = Yojson.Basic.Util.(json |> member "agent_y" |> to_int);
