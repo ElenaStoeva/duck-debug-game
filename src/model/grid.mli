@@ -43,8 +43,11 @@ val get_agent_y : t -> int
 (** [get_agent_orien] is the initial orientation of the agent *)
 val get_agent_orien : t -> orientation
 
-(** [get_start_grid] is the initial grid *)
+(** [get_start_grid g] is the initial grid *)
 val get_start_grid : t -> square list
+
+(** [get_winning_grid g]  is a list of squares that form the final shape. *)
+val get_winning_grid : t -> square list
 
 (** [get_size g] is the size of the grid *)
 val get_size : t -> int

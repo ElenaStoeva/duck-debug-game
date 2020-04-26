@@ -86,6 +86,8 @@ let get_agent_orien g = g.agent.orientation
 
 let get_start_grid g = g.start_grid
 
+let get_winning_grid g = g.final_grid
+
 let get_size g = g.size
 
 let get_square_x s = s.square_x
@@ -97,4 +99,4 @@ let get_square_att s = s.attribute
 let update_square_att s att = {
   s with
   attribute = att;
-  }
+}

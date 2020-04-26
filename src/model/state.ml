@@ -83,9 +83,9 @@ let rec helper_color color x y grid acc =
     end
 
 let color_square x y cl st = { 
-    st with
-    current_grid = helper_color cl x y st.current_grid [];
-  }
+  st with
+  current_grid = helper_color cl x y st.current_grid [];
+}
 
 let color cl st = {
   st with
@@ -98,4 +98,13 @@ let rec helper_list (glst : Grid.square list) acc = match glst with
   | {square_x=x; square_y=y; attribute=a}::t -> helper_list t ((x,y,a)::acc)
 
 let to_list st = helper_list st.current_grid []
+
+let rec helper_check_win winning_grid current_grid =
+  match winning_grid with
+  | [] -> true
+  | h::t -> if not (List.mem h current_grid) then false
+    else helper_check_win t current_grid
+
+let check_win st g = helper_check_win (Grid.get_winning_grid g) st.current_grid
+
 
