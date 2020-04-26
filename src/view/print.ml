@@ -41,6 +41,7 @@ let rec win_grid wlst glst acc =
   | (x,y,a)::t -> (win_grid_aux x y a)::(win_grid wlst t acc)
 
 let print_grid st gr =
+  print_string (Grid.get_instructions gr);
   print_endline (
     ("\nGrid"^(String.make (4 * (Grid.get_size gr) - 3) '-'))
     ^"    "

@@ -13,7 +13,8 @@ let rec read_user_code st gr =
 (** [match_move st] is the new game state after agent has moved, and [st] if 
     moving agent raises exception. *)
 let match_move st = match State.move st with
-  | exception e -> st
+  | exception e -> print_string 
+                     "\nYou cannot move off the grid. Keep stepping.\n"; st
   | new_st -> new_st
 
 (** [color_of_int i] is the grid attribute corresponding to [i]. 
@@ -22,7 +23,7 @@ let color_of_int i = match i with
   | 1 -> Grid.Red
   | 2 -> Grid.Green
   | 3 -> Grid.Blue
-  | _ -> failwith "Non-defined color"
+  | _ -> failwith "\nNon-defined color. Color command ignored.\n"
 
 (** [run_simulation st gr ms] prompts user and steps simulation of move stream 
     [ms] in game with valid grid [gr] and valid state [st], until player wins, 
@@ -47,7 +48,9 @@ let rec run_simulation st gr ms =
         | Some Eval.R -> run_simulation (State.turn State.Right st) gr tl
         | Some Eval.L -> run_simulation (State.turn State.Left st) gr tl
         | Some Eval.C (c) -> begin 
-            run_simulation (State.color (color_of_int c) st) gr tl
+            try
+              run_simulation (State.color (color_of_int c) st) gr tl
+            with Failure msg -> print_string msg; run_simulation st gr tl
           end
         | None -> failwith "Move stream malformed."
       end
@@ -73,8 +76,14 @@ let rec init_game () =
 (** [main ()] prompts for the game to play, displays welcome message, and
     starts the game. *)
 let main () =
-  print_string "Welcome. Please enter a level number (1,2,3) to play \
-                or (q) to quit: \n";
+  print_string 
+    "Welcome.\n\
+     Game objective:\nWrite code to move agent and achieve winning state.\n\
+     Game language syntax:\n\
+     'M' - Move forward\n'R' - Turn right\n'L' - Turn left\n\
+     'f=' - define function f\n'[f]' - call function f\n\
+     ';' - seperator between function definitions.\n\
+     Please enter a level number (1,2,3) to play, or (q) to quit: \n";
   init_game ()
 
 (* Execute the game engine. *)
