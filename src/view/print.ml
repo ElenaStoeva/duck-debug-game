@@ -1,5 +1,6 @@
 
-
+(** [string_of_square att] is string "r", "b", "g", or "#" matching with grid 
+    attribute [att]. *)
 let string_of_square (att : Grid.attribute) = match att with
   | Red -> "r"
   | Blue -> "b"
