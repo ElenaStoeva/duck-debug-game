@@ -40,6 +40,10 @@ val color : Grid.attribute -> t -> t
 (** [to_list st] is the list representation of the grid in [st]. *)
 val to_list : t -> (int * int * Grid.attribute) list
 
-(**[check_win st g] is true if all the squares in the winning state of the 
-   grid are in the current grid *)
+(** [check_win st g] is true if all the squares in the winning state of the 
+    grid are in the current grid *)
 val check_win : t -> Grid.t -> bool
+
+(** [get_agent st] is the pair representing the [x,y] coordinates of the 
+    agent in state [st]. *)
+val get_agent : t -> int * int * Grid.orientation

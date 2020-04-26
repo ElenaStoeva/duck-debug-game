@@ -112,3 +112,10 @@ let update_square_att s att = {
 }
 
 let get_instructions g = g.instructions
+
+(** [helper_list gl ac] is the list representation of [gl] added to list [ac].*)
+let rec helper_list (glst : square list) acc = match glst with
+  | [] -> acc
+  | {square_x=x; square_y=y; attribute=a}::t -> helper_list t ((x,y,a)::acc)
+
+let win_to_list gr = helper_list (get_winning_grid gr) []

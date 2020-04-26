@@ -137,17 +137,17 @@
     {
       "x": 2,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 2,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 2,
       "y": 4,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 3,
@@ -162,7 +162,7 @@
     {
       "x": 3,
       "y": 4,
-      "attribute": "blue"
+      "attribute": "red"
     },
     {
       "x": 4,
@@ -172,7 +172,7 @@
     {
       "x": 4,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "red"
     },
     {
       "x": 4,

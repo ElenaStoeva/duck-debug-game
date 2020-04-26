@@ -48,7 +48,7 @@ let rec defs_to_env ds =
   | [] -> []
   | Ast.Def(d,e)::t -> (d,e)::(defs_to_env t)
 
-(* TODO: Func to check infinite mutual recursion in function applications. *)
+(* TODO: Func to check infinite mutual recursion in function applications. and unrecognized color *)
 let rec app_to_lst x acc =
   match x with
   | [] -> acc

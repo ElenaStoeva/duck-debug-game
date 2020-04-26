@@ -109,4 +109,5 @@ let rec helper_check_win winning_grid current_grid =
 
 let check_win st g = helper_check_win (Grid.get_winning_grid g) st.current_grid
 
+let get_agent st = st.agent.x, st.agent.y, st.agent.current_orien
 

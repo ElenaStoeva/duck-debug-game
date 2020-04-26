@@ -68,3 +68,8 @@ val update_square_att : square -> attribute -> square
 (** [get_instructions g] is a string which explains to the player what they
     have to draw. *)
 val get_instructions : t -> string
+
+(** [win_to_list gr] is the list representation of the winning condition in 
+    [gr]. The state [st] is winning if every member of this list are in 
+    [to_list st]. *)
+val win_to_list : t -> (int * int * attribute) list
