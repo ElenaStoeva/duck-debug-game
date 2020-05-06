@@ -47,3 +47,7 @@ val check_win : t -> Grid.t -> bool
 (** [get_agent st] is the pair representing the [x,y] coordinates of the 
     agent in state [st]. *)
 val get_agent : t -> int * int * Grid.orientation
+
+(** [get_current_color st] is the color of the square where the agent is 
+    currently located. Used for testing.*)
+val get_current_color : t -> Grid.attribute

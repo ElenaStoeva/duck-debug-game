@@ -2,6 +2,8 @@ open OUnit2
 open Interpreter.Ast
 open Interpreter.Eval
 open Interpreter.Check
+open Model.Grid
+open Model.State
 
 (* TODO: AST comparator & printer *)
 let make_parse_test
@@ -84,10 +86,32 @@ let eval_tests = [
     (parse "f=1M2RM3[f];123[f]");
 ]
 
+let grid =  "../../json_files/example.json" |> Yojson.Basic.from_file |> from_json
+
+let state1 = init_state grid
+
+let state2 = move state1
+
+let state3 = turn Right state2 
+
+let state4 = color Blue state3 
+
+let state_tests = [
+  "Check initial agent position" >:: 
+  (fun _ ->  assert_equal (1,1) (get_agent_x grid,get_agent_y grid));
+  "Check agent position after moving" >:: 
+  (fun _ ->  assert_equal (1,2,N) (get_agent state2));
+  "Check agent orientation after rotating" >:: 
+  (fun _ ->  assert_equal (1,2,E) (get_agent state3));
+  "Check color of current square after coloring" >:: 
+  (fun _ ->  assert_equal Blue (get_current_color state4));
+]
+
 let suite =
   "test suite for Interpreter"  >::: List.flatten [
     parser_tests;
     eval_tests;
+    state_tests;
   ]
 
 let _ = run_test_tt_main suite

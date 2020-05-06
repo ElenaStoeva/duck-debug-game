@@ -111,3 +111,5 @@ let check_win st g = helper_check_win (Grid.get_winning_grid g) st.current_grid
 
 let get_agent st = st.agent.x, st.agent.y, st.agent.current_orien
 
+let get_current_color st = Grid.get_att_from_coord st.current_grid st.agent.x st.agent.y
+
