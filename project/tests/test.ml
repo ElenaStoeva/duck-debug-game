@@ -19,14 +19,14 @@ let parser_tests = [
   make_parse_test "No func with color" "M12L3M" 
     (Prog ([], [Move; Color(1); Color(2); Left; Color(3); Move]));
   make_parse_test "Func application" "f=MRM;[f]" 
-    (Prog ([Const ("f", [Move; Right; Move])], [ConstApp ("f")]));
+    (Prog ([Def ("f", [], [Move; Right; Move])], [FunApp ("f", [])]));
   make_parse_test "Infinite stream" "f=MRM[f];[f]" 
     (Prog (
-        [Const ("f", [Move; Right; Move; ConstApp ("f")])], [ConstApp ("f")])
+        [Def ("f", [], [Move; Right; Move; FunApp ("f", [])])], [FunApp ("f", [])])
     );
   make_parse_test "Multiple funcs" "g=MR;f=M[g];[f]"
-    (Prog ([Const ("g", [Move; Right]); Const ("f", [Move; ConstApp ("g")])], 
-           [ConstApp ("f")]))
+    (Prog ([Def ("g", [], [Move; Right]); Def ("f", [], [Move; FunApp ("g", [])])], 
+           [FunApp ("f", [])]))
 ]
 
 let make_hd_test

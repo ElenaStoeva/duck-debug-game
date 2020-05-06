@@ -6,7 +6,6 @@ exception Undefined_color
 let rec app_to_lst x acc =
   match x with
   | [] -> acc
-  | Ast.ConstApp (id)::t -> app_to_lst t (id::acc)
   | Ast.FunApp (id,_)::t -> app_to_lst t (id::acc)
   | _::t -> app_to_lst t acc
 
@@ -17,7 +16,6 @@ let rec def_to_lst ds acc acc2 =
   match ds with
   | [] -> acc,acc2
   | Ast.Def(id,_,cs)::t -> def_to_lst t (id::acc) ((app_to_lst cs []) @ acc2)
-  | Ast.Const(id,cs)::t -> def_to_lst t (id::acc) ((app_to_lst cs []) @ acc2)
 
 (** [has_def p] is [p] if all function applications in [p] are defined, 
     else raises exception. Raises [Undefined_function] if a applied function
@@ -39,7 +37,7 @@ let has_color (Ast.Prog(ds, x)) =
   if List.for_all f x 
   then Ast.Prog(ds, x)
   else if begin
-    let lst d = match d with Ast.Const(_,cs) -> cs | Ast.Def(_,_,cs) -> cs in
+    let lst d = match d with Ast.Def(_,_,cs) -> cs in
     List.for_all (fun d -> List.for_all f (lst d)) ds end 
   then Ast.Prog(ds, x)
   else raise Undefined_color

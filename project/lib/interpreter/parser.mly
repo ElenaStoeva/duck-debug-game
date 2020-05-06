@@ -14,16 +14,16 @@
 %token VARSEP
 %token ENDDEF
 
+
 %start <Ast.program> prog
 
 %%
 
 prog:
-  | ds = definition*; cs = command*; EOF { Prog (ds, cs) }
+  | ds = definition*; cs = basecommand*; EOF { Prog (ds, cs) }
   ;
 
 definition:
-  | id = ID; DEFINE; cs = command*; ENDDEF { Const (id, cs) }
   | id = ID; vs = variable*; DEFINE; cs = command*; ENDDEF { Def (id, vs, cs) }
   ;
 
@@ -35,12 +35,15 @@ apps:
   | VARSEP; cs = command* { cs }
   ;
 
-command:
+basecommand:
   | MOVE { Move }
   | RIGHT { Right }
   | LEFT { Left }
   | c = COLOR { Color (c) }
-  | LEFTBRAKET; id = ID; RIGHTBRAKET { ConstApp (id) }
   | LEFTBRAKET; id = ID; args = apps*; RIGHTBRAKET { FunApp (id, args) }
+  ;
+
+command:
+  | b = basecommand { b }
   | id = ID { VarApp (id) }
   ;

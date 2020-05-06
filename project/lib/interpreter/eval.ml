@@ -69,7 +69,7 @@ let substitute
     | hv::tv, hcl::tcl -> begin
         insert_command hv hcl cs [] |> List.rev |> subs_aux tv tcl
       end
-    | _ -> failwith "substitute precondition violated." in
+    | _ -> failwith "number of arguments dont match" in
   subs_aux vs clst cs
 
 (** [preprend env lst str] is the move stream with commands in [lst] prepended
@@ -82,15 +82,10 @@ let rec prepend
     (str : move_stream) : move_stream =
   match lst with
   | [] -> str
-  | ConstApp (id) :: t -> begin
-      let f = fun (i,vs,_) -> vs = [] && i = id in
-      let (_,_,cs) = List.find f env in
-      prepend env cs (prepend env t str)
-    end
   | FunApp (id, clst) :: t -> begin
       prepend env (substitute env id clst) (prepend env t str)
     end
-  | VarApp (_) :: _ -> failwith "prepend precondition violated"
+  | VarApp (_) :: _ -> failwith "variables are only allowed in definions"
   | h::t -> Cons(h, lazy (prepend env t str))
 
 (** [list_to_stream e l] is the move stream of the commands in [lst]. It 
@@ -101,7 +96,6 @@ let list_to_stream (env : env) (lst : Ast.command list) : move_stream =
 
 let hd str = match str with 
   | End -> raise Empty_stream  
-  | Cons (ConstApp(_),_) -> raise Malformed_stream
   | Cons (VarApp(_),_) -> raise Malformed_stream
   | Cons (FunApp(_),_) -> raise Malformed_stream
   | Cons (x,_) -> prim_of x
@@ -132,12 +126,9 @@ let rec vars_to_lst x acc =
 let rec defs_to_env ds : (string * string list * Ast.command list) list =
   match ds with
   | [] -> []
-  | Ast.Const(id,cs)::t -> (id,[],cs)::(defs_to_env t)
   | Ast.Def(id,vs,cs)::t -> begin 
       (id, (List.rev(vars_to_lst vs [])), cs) :: (defs_to_env t)
     end
 
-let init_stream prog = 
-  match prog with
-  | Ast.Prog ([], x) -> list_to_stream [] x
+let init_stream prog = match prog with 
   | Ast.Prog (ds, x) -> list_to_stream (defs_to_env ds) x
