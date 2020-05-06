@@ -3,13 +3,13 @@
 }
 
 let whitespace = [' ' '\t']+
-let func = ['a'-'z']
+let id = ['a'-'z']
 let color = ['0'-'9']
 
 rule read =
   parse
   | whitespace { read lexbuf }
-  | func { FUNC (Lexing.lexeme lexbuf) }
+  | id { ID (Lexing.lexeme lexbuf) }
   | color { COLOR (int_of_string (Lexing.lexeme lexbuf)) }
   | "=" { DEFINE }
   | "[" { LEFTBRAKET }
@@ -17,5 +17,6 @@ rule read =
   | "M" { MOVE }
   | "R" { RIGHT }
   | "L" { LEFT }
+  | "-" { VARSEP }
   | ";" { ENDDEF }
   | eof { EOF }

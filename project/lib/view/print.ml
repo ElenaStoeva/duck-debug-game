@@ -1,7 +1,7 @@
 
 (** [string_of_square att] is string "r", "b", "g", or "#" matching with grid 
     attribute [att]. *)
-let string_of_square (att : Grid.attribute) = match att with
+let string_of_square (att : Model.Grid.attribute) = match att with
   | Red -> "1"
   | Green -> "2"
   | Blue -> "3"
@@ -31,34 +31,34 @@ let rec print_grid_aux glst wlst cur n =
     print_grid_aux glst wlst (cur-1) n
 
 let rec win_grid wlst glst acc =
-  let win_grid_aux x y a = 
-    match List.find_opt (fun (xx,yy,aa) -> xx = x && yy = y) wlst with
-    | Some (xx,yy,aa) -> (x,y, (string_of_square aa))
+  let win_grid_aux x y = 
+    match List.find_opt (fun (xx,yy,_) -> xx = x && yy = y) wlst with
+    | Some (_,_,aa) -> (x,y, (string_of_square aa))
     | None -> (x,y,".") 
   in
   match glst with
   | [] -> acc
-  | (x,y,a)::t -> (win_grid_aux x y a)::(win_grid wlst t acc)
+  | (x,y,_)::t -> (win_grid_aux x y)::(win_grid wlst t acc)
 
 let print_grid st gr =
-  print_string (Grid.get_instructions gr);
+  print_string (Model.Grid.get_instructions gr);
   print_endline (
-    ("\nGrid"^(String.make (4 * (Grid.get_size gr) - 3) '-'))
+    ("\nGrid"^(String.make (4 * (Model.Grid.get_size gr) - 3) '-'))
     ^"    "
-    ^("Winning"^(String.make (4 * (Grid.get_size gr) - 6) '-'))
+    ^("Winning"^(String.make (4 * (Model.Grid.get_size gr) - 6) '-'))
   );
-  let ax, ay = st |> State.get_agent |> fun (x,y,_) -> (x,y) in
-  let lst = Grid.win_to_list gr in
-  let glst = st |> State.to_list in
+  let ax, ay = st |> Model.State.get_agent |> fun (x,y,_) -> (x,y) in
+  let lst = Model.Grid.win_to_list gr in
+  let glst = st |> Model.State.to_list in
   let wlst = win_grid lst glst [] in
   let f = fun (x,y,a) -> begin if ax <> x || ay <> y then (x,y,(string_of_square a)) 
-      else match State.get_agent st with 
-        | (x,y,Grid.N) -> (x,y,"^")
-        | (x,y,Grid.E) -> (x,y,">")
-        | (x,y,Grid.W) -> (x,y,"<")
-        | (x,y,Grid.S) -> (x,y,"v")
+      else match Model.State.get_agent st with 
+        | (x,y,Model.Grid.N) -> (x,y,"^")
+        | (x,y,Model.Grid.E) -> (x,y,">")
+        | (x,y,Model.Grid.W) -> (x,y,"<")
+        | (x,y,Model.Grid.S) -> (x,y,"v")
     end in
-  let glst = st |> State.to_list |> List.map f in
-  gr |> Grid.get_size |> fun x -> print_grid_aux glst wlst x x
+  let glst = st |> Model.State.to_list |> List.map f in
+  gr |> Model.Grid.get_size |> fun x -> print_grid_aux glst wlst x x
 
 

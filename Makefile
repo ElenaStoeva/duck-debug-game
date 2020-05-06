@@ -1,22 +1,26 @@
-MODULES = lexer parser eval grid state print ast authors
-OBJECTS = $(MODULES:=.cmo)
-SRC_DIRS = -I src/interpreter -I src/model -I src/view -I src/tests -I src
-
 default: build
-	utop
+	dune utop project/lib
 
 build:
-	ocamlbuild -use-ocamlfind $(SRC_DIRS) $(OBJECTS)
+	dune build
 
-run:
-	ocamlbuild -use-ocamlfind $(SRC_DIRS) main.byte && ./main.byte
+run: build
+	dune exec project/bin/main.exe
 
 test:
-	ocamlbuild -use-ocamlfind -tag 'debug' $(SRC_DIRS) test.byte && ./test.byte
+	dune runtest
+
+bisect:
+	BISECT_ENABLE=yes dune runtest --force
+	bisect-ppx-report html && bisect-ppx-report summary
+
+docs:
+	dune build @doc-private
 
 zip:
-	zip -v -r project_src.zip ./src ./json_files _tags Makefile INSTALL.txt .ocamlinit .merlin
+	zip -v -r project_src.zip ./project ./json_files dune-project project.opam Makefile INSTALL.txt 
 
 clean:
-	ocamlbuild -clean
+	dune clean
+	rm -rf _coverage
 	rm -rf project_src.zip

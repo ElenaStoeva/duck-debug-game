@@ -6,6 +6,8 @@ winning state.
 
 To run the game:
 
+- After you unzip navigate to the directory of the Makefile
+
 - On command shell, type "make run".
 
 - When prompted to pick level, enter "1", "2", or "3". Those are the 3 sample

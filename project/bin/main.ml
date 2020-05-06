@@ -1,3 +1,7 @@
+open Model
+open View
+open Interpreter
+
 (** [read_user_code st gr] is a move stream resulting from parsing user's 
     solution code for the level.
     Requires: [st] is a valid game state and [gr] is a valid grid. *)
@@ -5,15 +9,15 @@ let rec read_user_code st gr =
   Print.print_grid st gr;
   print_string "\nInput code:\n";
   match read_line () with
-  | str -> begin try str |> Eval.parse |> Eval.check_ast |> Eval.init_stream
-      with e -> 
+  | str -> begin try str |> Eval.parse |> Check.check_ast |> Eval.init_stream
+      with _ -> 
         print_endline "\nInterpreting error. Please fix your code.\n"; 
         read_user_code st gr end
 
 (** [match_move st] is the new game state after agent has moved, and [st] if 
     moving agent raises exception. *)
 let match_move st = match State.move st with
-  | exception e -> print_string 
+  | exception _ -> print_string 
                      "\nYou cannot move off the grid. Keep stepping.\n"; st
   | new_st -> new_st
 
@@ -43,7 +47,7 @@ let match_prim st m = match m with
 let rec run_simulation st gr ms =
   Print.print_grid st gr;
   let hd_opt = try Some (Eval.hd ms) 
-    with e -> None in
+    with _ -> None in
   if State.check_win st gr then print_endline "\nCongratulations. You won!."
   else if hd_opt =  None 
   then print_endline "Your code terminated but you did not win :(\n"
@@ -72,6 +76,7 @@ let rec init_game () =
   | "1" -> st_gr "json_files/level1.json"
   | "2" -> st_gr "json_files/level2.json"
   | "3" -> st_gr "json_files/level3.json"
+  | "99" -> st_gr "json_files/level99.json"
   | "q" -> ()
   | _-> begin 
       print_string "\nUnrecognized level. Please enter valid command: \n"; 
@@ -88,7 +93,7 @@ let main () =
      '1' - Color Square Red\n'2' - Color Square Green\n'3' - Color Square Blue\n\
      'f=' - define function f\n'[f]' - call function f\n\
      ';' - seperator between function definitions.\n\
-     Please enter a level number (0,1,2,3) to play, or (q) to quit: \n";
+     Please enter a level number (1,2,3) to play, or (q) to quit: \n";
   init_game ()
 
 (* Execute the game engine. *)
