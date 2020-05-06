@@ -119,3 +119,11 @@ let rec helper_list (glst : square list) acc = match glst with
   | {square_x=x; square_y=y; attribute=a}::t -> helper_list t ((x,y,a)::acc)
 
 let win_to_list gr = helper_list (get_winning_grid gr) []
+
+(** [get_square squares x y] is the square from the list [squares] with coordinates [x] and [y]*)
+let rec get_square squares x y = 
+  match squares with
+  | [] -> failwith "No such square"
+  | s::t -> if (s.square_x=x) && (s.square_y=y) then s else get_square t x y
+
+let get_att_from_coord squares x y = get_square_att (get_square squares x y)

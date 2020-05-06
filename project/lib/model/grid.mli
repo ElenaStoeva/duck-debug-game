@@ -73,3 +73,6 @@ val get_instructions : t -> string
     [gr]. The state [st] is winning if every member of this list are in 
     [to_list st]. *)
 val win_to_list : t -> (int * int * attribute) list
+
+(** [get_att_from_coord squares x y] is the attribute of square with coordinates x and y*)
+val get_att_from_coord : square list -> int -> int -> attribute

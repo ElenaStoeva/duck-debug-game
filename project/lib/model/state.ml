@@ -31,10 +31,10 @@ let new_position st =
   let x = st.agent.x in
   let y = st.agent.y in
   match st.agent.current_orien with
-  | N -> if y < st.size then (x,y+1) else raise Invalid_move
-  | E -> if x < st.size then (x+1,y) else raise Invalid_move
-  | W -> if x > 1 then (x-1,y) else raise Invalid_move
-  | S -> if y > 1 then (x,y-1) else raise Invalid_move
+  | N -> if y < st.size && (Grid.get_att_from_coord st.current_grid x (y+1))<> Wall then (x,y+1) else raise Invalid_move
+  | E -> if x < st.size && (Grid.get_att_from_coord st.current_grid (x+1) y)<> Wall then (x+1,y) else raise Invalid_move
+  | W -> if x > 1 && (Grid.get_att_from_coord st.current_grid (x-1) y)<> Wall then (x-1,y) else raise Invalid_move
+  | S -> if y > 1 && (Grid.get_att_from_coord st.current_grid x (y-1))<> Wall then (x,y-1) else raise Invalid_move
 
 let move st = 
   let x,y = new_position st in
