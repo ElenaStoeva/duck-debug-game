@@ -1,0 +1,103 @@
+{
+  "instructions": "This is just a 3x3 grid with randomly colored squares.",
+  "size": 3,
+  "agent": {
+    "agent_x": 1,
+    "agent_y": 1,
+    "orientation": "N"
+  },
+  "start_squares": [
+    {
+      "x": 1,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "attribute": "blue"
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "attribute": "green"
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "attribute": "wall"
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "attribute": "red"
+    },
+    {
+      "x": 3,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "attribute": "blue"
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "attribute": "green"
+    }
+  ],
+  "winning_squares": [
+    {
+      "x": 1,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "attribute": "blue"
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "attribute": "green"
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "attribute": "red"
+    },
+    {
+      "x": 3,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "attribute": "blue"
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "attribute": "red"
+    }
+  ]
+}

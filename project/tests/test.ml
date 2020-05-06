@@ -86,7 +86,7 @@ let eval_tests = [
     (parse "f=1M2RM3[f];123[f]");
 ]
 
-let grid =  "../../json_files/example.json" |> Yojson.Basic.from_file |> from_json
+let grid =  "../../json_files/example_with_walls.json" |> Yojson.Basic.from_file |> from_json
 
 let state1 = init_state grid
 
@@ -94,7 +94,7 @@ let state2 = move state1
 
 let state3 = turn Right state2 
 
-let state4 = color Blue state3 
+let state4 = color Blue state3
 
 let state_tests = [
   "Check initial agent position" >:: 
@@ -105,6 +105,10 @@ let state_tests = [
   (fun _ ->  assert_equal (1,2,E) (get_agent state3));
   "Check color of current square after coloring" >:: 
   (fun _ ->  assert_equal Blue (get_current_color state4));
+  "Check moving to a wall" >:: 
+  (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> move state4));
+  "Check moving off the grid" >:: 
+  (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> turn Left state4 |> move |> move));
 ]
 
 let suite =
