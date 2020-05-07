@@ -48,7 +48,7 @@ let rec run_simulation st gr ms =
   Print.print_grid st gr;
   let hd_opt = try Some (Eval.hd ms) 
     with _ -> None in
-  if State.check_win st gr then print_endline "\nCongratulations. You won!."
+  if State.check_win st gr then print_endline ("\nCongratulations. You won!. Your score is: "^((Grid.get_score gr)|> Int.to_string))
   else if hd_opt =  None 
   then print_endline "Your code terminated but you did not win :(\n"
   else 

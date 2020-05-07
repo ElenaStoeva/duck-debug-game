@@ -76,3 +76,7 @@ val win_to_list : t -> (int * int * attribute) list
 
 (** [get_att_from_coord squares x y] is the attribute of square with coordinates x and y*)
 val get_att_from_coord : square list -> int -> int -> attribute
+
+(** [get_score g] is the initial number from which we subtract the length of the
+    player's command to get their final score.*)
+val get_score : t -> int

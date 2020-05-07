@@ -1,6 +1,7 @@
 {
   "instructions": "Draw the letter S in green color.",
   "size": 7,
+  "score": 30,
   "agent": {
     "agent_x": 2,
     "agent_y": 1,

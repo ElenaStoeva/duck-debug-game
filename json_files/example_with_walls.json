@@ -1,6 +1,7 @@
 {
   "instructions": "This is just a 3x3 grid with randomly colored squares.",
   "size": 3,
+  "score": 30,
   "agent": {
     "agent_x": 1,
     "agent_y": 1,

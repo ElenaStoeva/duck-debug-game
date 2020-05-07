@@ -24,6 +24,7 @@ type t = {
   agent: agent;
   start_grid : square list;
   final_grid : square list;
+  score : int;
 }
 
 (**[attribute_of_string color] is the type of the attribute represented by
@@ -86,6 +87,7 @@ let from_json json = {
       |> to_list 
       |> List.map square_of_json
     );
+  score = Yojson.Basic.Util.(json |> member "score" |> to_int);
 }
 
 let get_agent_x g = g.agent.agent_x
@@ -127,3 +129,5 @@ let rec get_square squares x y =
   | s::t -> if (s.square_x=x) && (s.square_y=y) then s else get_square t x y
 
 let get_att_from_coord squares x y = get_square_att (get_square squares x y)
+
+let get_score g = g.score

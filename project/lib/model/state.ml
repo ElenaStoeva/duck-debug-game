@@ -11,7 +11,7 @@ type agent = {
 type t = {
   agent : agent;
   current_grid : Grid.square list;
-  size : int
+  size : int;
 }
 
 let init_state g = {
