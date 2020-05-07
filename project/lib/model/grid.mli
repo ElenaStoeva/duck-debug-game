@@ -80,3 +80,6 @@ val get_att_from_coord : square list -> int -> int -> attribute
 (** [get_score g] is the initial number from which we subtract the length of the
     player's command to get their final score.*)
 val get_score : t -> int
+
+(** [max_steps g] is the maximum number of steps that the player can make. *)
+val get_max_steps : t -> int

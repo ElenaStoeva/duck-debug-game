@@ -2,6 +2,7 @@
   "instructions": "Draw a 3x3 square in blue color.",
   "size": 5,
   "score": 30,
+  "steps": 30,
   "agent": {
     "agent_x": 2,
     "agent_y": 2,

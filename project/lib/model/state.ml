@@ -12,6 +12,7 @@ type t = {
   agent : agent;
   current_grid : Grid.square list;
   size : int;
+  steps_left : int;
 }
 
 let init_state g = {
@@ -22,6 +23,7 @@ let init_state g = {
   };
   current_grid = Grid.get_start_grid g;
   size = Grid.get_size g;
+  steps_left = Grid.get_max_steps g;
 }
 
 (** [new_position st] is an [(x,y)] pair where [x] and [y] represent the new
@@ -42,7 +44,8 @@ let move st =
     agent = { st.agent with
               x = x;
               y = y;
-            }
+            };
+    steps_left = st.steps_left - 1
   }
 
 (** [new_orien d st] is the orientation of the agent after the turn in 
@@ -69,6 +72,7 @@ let turn direction st = {
   agent = { st.agent with
             current_orien = new_orien direction st
           };
+  steps_left = st.steps_left - 1
 }
 
 (** [helper_color c x y g a] is a grid square list where the square in [x],[y]
@@ -90,6 +94,7 @@ let color_square x y cl st = {
 let color cl st = {
   st with
   current_grid = helper_color cl st.agent.x st.agent.y st.current_grid [];
+  steps_left = st.steps_left - 1
 }
 
 (** [helper_list gl ac] is the list representation of [gl] added to list [ac].*)
@@ -112,4 +117,6 @@ let check_win st g = helper_check_win (Grid.get_winning_grid g) st.current_grid
 let get_agent st = st.agent.x, st.agent.y, st.agent.current_orien
 
 let get_current_color st = Grid.get_att_from_coord st.current_grid st.agent.x st.agent.y
+
+let get_steps st = st.steps_left
 

@@ -25,6 +25,7 @@ type t = {
   start_grid : square list;
   final_grid : square list;
   score : int;
+  max_steps : int;
 }
 
 (**[attribute_of_string color] is the type of the attribute represented by
@@ -88,6 +89,7 @@ let from_json json = {
       |> List.map square_of_json
     );
   score = Yojson.Basic.Util.(json |> member "score" |> to_int);
+  max_steps = Yojson.Basic.Util.(json |> member "steps" |> to_int);
 }
 
 let get_agent_x g = g.agent.agent_x
@@ -131,3 +133,5 @@ let rec get_square squares x y =
 let get_att_from_coord squares x y = get_square_att (get_square squares x y)
 
 let get_score g = g.score
+
+let get_max_steps g = g.max_steps

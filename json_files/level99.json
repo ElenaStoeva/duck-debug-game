@@ -2,6 +2,7 @@
   "instructions": "Sample solution, f -x = xxRx[f -xM1]; [f -LL]",
   "size": 25,
   "score": 30,
+  "steps": 50,
   "agent": {
     "agent_x": 13,
     "agent_y": 13,
