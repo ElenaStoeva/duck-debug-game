@@ -97,12 +97,14 @@ let color cl st = {
   steps_left = st.steps_left - 1
 }
 
+
 (** [helper_list gl ac] is the list representation of [gl] added to list [ac].*)
 let rec helper_list (glst : Grid.square list) acc = match glst with
   | [] -> acc
   | {square_x=x; square_y=y; attribute=a}::t -> helper_list t ((x,y,a)::acc)
 
 let to_list st = helper_list st.current_grid []
+
 
 (**[helper_check_win] is true if each square in [winning_grid] is in the 
    list [current_grid] *)
