@@ -4,8 +4,11 @@ default: build
 build:
 	dune build
 
-run: build
-	dune exec project/bin/main.exe
+cli: build
+	dune exec project/bin/app.exe "cli"
+
+gui: build
+	dune exec project/bin/app.exe "gui"
 
 test:
 	dune runtest

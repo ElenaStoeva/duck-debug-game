@@ -80,11 +80,11 @@ let rec init_game () =
     run_simulation st gr (read_user_code st gr) in
   match read_line () with
   | exception End_of_file -> ()
-  | "0" -> st_gr "json_files/example.json"
-  | "1" -> st_gr "json_files/level1.json"
-  | "2" -> st_gr "json_files/level2.json"
-  | "3" -> st_gr "json_files/level3.json"
-  | "99" -> st_gr "json_files/level99.json"
+  | "0" -> st_gr "resources/json_files/example.json"
+  | "1" -> st_gr "resources/json_files/level1.json"
+  | "2" -> st_gr "resources/json_files/level2.json"
+  | "3" -> st_gr "resources/json_files/level3.json"
+  | "99" -> st_gr "resources/json_files/level99.json"
   | "q" -> ()
   | _-> begin 
       print_string "\nUnrecognized level. Please enter valid command: \n"; 
@@ -98,11 +98,9 @@ let main () =
      Game objective:\nWrite code to move agent and achieve winning state.\n\
      Game language syntax:\n\
      'M' - Move Forward\n'R' - Turn Right\n'L' - Turn Left\n\
-     '1' - Color Square Red\n'2' - Color Square Green\n'3' - Color Square Blue\n\
+     '1' - Color Square Red\n'2' - \
+     Color Square Green\n'3' - Color Square Blue\n\
      'f=' - define function f\n'[f]' - call function f\n\
      ';' - seperator between function definitions.\n\
      Please enter a level number (1,2,3) to play, or (q) to quit: \n";
   init_game ()
-
-(* Execute the game engine. *)
-let () = main ()

@@ -1,0 +1,616 @@
+{
+  "instructions": "AAAAAAAAAA",
+  "size": 10,
+  "score": 30,
+  "steps": 50,
+  "agent": {
+    "agent_x": 2,
+    "agent_y": 1,
+    "orientation": "N"
+  },
+  "start_squares": [
+    {
+      "x": 1,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "attribute": "green"
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 4,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 5,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 6,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 7,
+      "attribute": "red"
+    },    
+    {
+      "x": 1,
+      "y": 8,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 9,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 10,
+      "attribute": "red"
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "attribute": "green"
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "attribute": "red"
+    },
+    {
+      "x": 2,
+      "y": 4,
+      "attribute": "red"
+    },
+    {
+      "x": 2,
+      "y": 5,
+      "attribute": "red"
+    },
+    {
+      "x": 2,
+      "y": 6,
+      "attribute": "red"
+    },
+    {
+      "x": 2,
+      "y": 7,
+      "attribute": "red"
+    },    {
+      "x": 2,
+      "y": 8,
+      "attribute": "red"
+    },
+    {
+      "x": 2,
+      "y": 9,
+      "attribute": "red"
+    },
+    {
+      "x": 2,
+      "y": 10,
+      "attribute": "red"
+    },
+    {
+      "x": 3,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "attribute": "green"
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "attribute": "red"
+    },
+    {
+      "x": 3,
+      "y": 4,
+      "attribute": "red"
+    },
+    {
+      "x": 3,
+      "y": 5,
+      "attribute": "red"
+    },
+    {
+      "x": 3,
+      "y": 6,
+      "attribute": "red"
+    },
+    {
+      "x": 3,
+      "y": 7,
+      "attribute": "red"
+    },    
+    {
+      "x": 3,
+      "y": 8,
+      "attribute": "red"
+    },
+    {
+      "x": 3,
+      "y": 9,
+      "attribute": "red"
+    },
+    {
+      "x": 3,
+      "y": 10,
+      "attribute": "red"
+    },
+    {
+      "x": 4,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 4,
+      "y": 2,
+      "attribute": "green"
+    },
+    {
+      "x": 4,
+      "y": 3,
+      "attribute": "red"
+    },
+    {
+      "x": 4,
+      "y": 4,
+      "attribute": "red"
+    },
+    {
+      "x": 4,
+      "y": 5,
+      "attribute": "red"
+    },
+    {
+      "x": 4,
+      "y": 6,
+      "attribute": "red"
+    },
+    {
+      "x": 4,
+      "y": 7,
+      "attribute": "red"
+    },    {
+      "x": 4,
+      "y": 8,
+      "attribute": "red"
+    },
+    {
+      "x": 4,
+      "y": 9,
+      "attribute": "red"
+    },
+    {
+      "x": 4,
+      "y": 10,
+      "attribute": "red"
+    },
+    {
+      "x": 5,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 5,
+      "y": 2,
+      "attribute": "green"
+    },
+    {
+      "x": 5,
+      "y": 3,
+      "attribute": "red"
+    },
+    {
+      "x": 5,
+      "y": 4,
+      "attribute": "red"
+    },
+    {
+      "x": 5,
+      "y": 5,
+      "attribute": "red"
+    },
+    {
+      "x": 5,
+      "y": 6,
+      "attribute": "red"
+    },
+    {
+      "x": 5,
+      "y": 7,
+      "attribute": "red"
+    },    
+    {
+      "x": 5,
+      "y": 8,
+      "attribute": "red"
+    },
+    {
+      "x": 5,
+      "y": 9,
+      "attribute": "red"
+    },
+    {
+      "x": 5,
+      "y": 10,
+      "attribute": "red"
+    },
+    {
+      "x": 6,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 6,
+      "y": 2,
+      "attribute": "green"
+    },
+    {
+      "x": 6,
+      "y": 3,
+      "attribute": "red"
+    },
+    {
+      "x": 6,
+      "y": 4,
+      "attribute": "red"
+    },
+    {
+      "x": 6,
+      "y": 5,
+      "attribute": "red"
+    },
+    {
+      "x": 6,
+      "y": 6,
+      "attribute": "red"
+    },
+    {
+      "x": 6,
+      "y": 7,
+      "attribute": "red"
+    },    
+    {
+      "x": 6,
+      "y": 8,
+      "attribute": "red"
+    },
+    {
+      "x": 6,
+      "y": 9,
+      "attribute": "red"
+    },
+    {
+      "x": 6,
+      "y": 10,
+      "attribute": "red"
+    },
+    {
+      "x": 7,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 7,
+      "y": 2,
+      "attribute": "green"
+    },
+    {
+      "x": 7,
+      "y": 3,
+      "attribute": "red"
+    },
+    {
+      "x": 7,
+      "y": 4,
+      "attribute": "red"
+    },
+    {
+      "x": 7,
+      "y": 5,
+      "attribute": "red"
+    },
+    {
+      "x": 7,
+      "y": 6,
+      "attribute": "red"
+    },
+    {
+      "x": 7,
+      "y": 7,
+      "attribute": "red"
+    },    
+    {
+      "x": 7,
+      "y": 8,
+      "attribute": "red"
+    },
+    {
+      "x": 7,
+      "y": 9,
+      "attribute": "red"
+    },
+    {
+      "x": 7,
+      "y": 10,
+      "attribute": "red"
+    },
+    {
+      "x": 8,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 8,
+      "y": 2,
+      "attribute": "green"
+    },
+    {
+      "x": 8,
+      "y": 3,
+      "attribute": "red"
+    },
+    {
+      "x": 8,
+      "y": 4,
+      "attribute": "red"
+    },
+    {
+      "x": 8,
+      "y": 5,
+      "attribute": "red"
+    },
+    {
+      "x": 8,
+      "y": 6,
+      "attribute": "red"
+    },
+    {
+      "x": 8,
+      "y": 7,
+      "attribute": "red"
+    },    
+    {
+      "x": 8,
+      "y": 8,
+      "attribute": "red"
+    },
+    {
+      "x": 8,
+      "y": 9,
+      "attribute": "red"
+    },
+    {
+      "x": 8,
+      "y": 10,
+      "attribute": "red"
+    },
+    {
+      "x": 9,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 9,
+      "y": 2,
+      "attribute": "green"
+    },
+    {
+      "x": 9,
+      "y": 3,
+      "attribute": "red"
+    },
+    {
+      "x": 9,
+      "y": 4,
+      "attribute": "red"
+    },
+    {
+      "x": 9,
+      "y": 5,
+      "attribute": "red"
+    },
+    {
+      "x": 9,
+      "y": 6,
+      "attribute": "red"
+    },
+    {
+      "x": 9,
+      "y": 7,
+      "attribute": "red"
+    },    
+    {
+      "x": 9,
+      "y": 8,
+      "attribute": "red"
+    },
+    {
+      "x": 9,
+      "y": 9,
+      "attribute": "red"
+    },
+    {
+      "x": 9,
+      "y": 10,
+      "attribute": "red"
+    },
+    {
+      "x": 10,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 10,
+      "y": 2,
+      "attribute": "green"
+    },
+    {
+      "x": 10,
+      "y": 3,
+      "attribute": "red"
+    },
+    {
+      "x": 10,
+      "y": 4,
+      "attribute": "red"
+    },
+    {
+      "x": 10,
+      "y": 5,
+      "attribute": "red"
+    },
+    {
+      "x": 10,
+      "y": 6,
+      "attribute": "red"
+    },
+    {
+      "x": 10,
+      "y": 7,
+      "attribute": "red"
+    },    {
+      "x": 10,
+      "y": 8,
+      "attribute": "red"
+    },
+    {
+      "x": 10,
+      "y": 9,
+      "attribute": "red"
+    },
+    {
+      "x": 10,
+      "y": 10,
+      "attribute": "red"
+    }
+  ],
+  "winning_squares": [
+    {
+      "x": 1,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "attribute": "green"
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 4,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 5,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 6,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 7,
+      "attribute": "red"
+    },    {
+      "x": 1,
+      "y": 8,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 9,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
+      "y": 10,
+      "attribute": "red"
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "attribute": "red"
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "attribute": "green"
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "attribute": "red"
+    },
+    {
+      "x": 2,
+      "y": 4,
+      "attribute": "red"
+    },
+    {
+      "x": 2,
+      "y": 5,
+      "attribute": "red"
+    },
+    {
+      "x": 6,
+      "y": 7,
+      "attribute": "red"
+    },    
+    {
+      "x": 6,
+      "y": 8,
+      "attribute": "red"
+    },
+    {
+      "x": 6,
+      "y": 9,
+      "attribute": "red"
+    },
+    {
+      "x": 6,
+      "y": 10,
+      "attribute": "red"
+    },
+    {
+      "x": 10,
+      "y": 4,
+      "attribute": "blue"
+    },
+    {
+      "x": 10,
+      "y": 6,
+      "attribute": "blue"
+    }
+  ]
+}

@@ -86,8 +86,7 @@ let eval_tests = [
     (parse "f=1M2RM3[f];123[f]");
 ]
 
-(** 3x3 grid with walls*)
-let grid =  "../../json_files/example_with_walls.json" |> Yojson.Basic.from_file |> from_json
+let grid = "../../../../resources/json_files/example_with_walls.json" |> Yojson.Basic.from_file |> from_json
 
 (** Position (1,1,N) *)
 let state1 = init_state grid
