@@ -17,7 +17,7 @@ let interpret_program prog_str =
       |> Eval.parse 
       |> Check.check_ast 
       |> Eval.init_stream 
-  with _ -> raise (InterpreterError "")
+  with _ -> raise (InterpreterError "Cannot compile. Check your code!")
 
 let initialize filename prog_str =
   let gr = filename |> Yojson.Basic.from_file |> Grid.from_json in

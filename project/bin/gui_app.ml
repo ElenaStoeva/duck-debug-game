@@ -101,7 +101,6 @@ let main () =
   let grid = app#agent in
   let temp = GMisc.image ~file:"resources/graphics/empty.png" ~packing:(grid#attach ~left:0 ~top:0) () in
   let matrix = Array.make_matrix 10 10 temp in
-  matrix.(0).(0) <- temp;
 
   for i = 0 to 9 do
     for j = 0 to 9 do
@@ -172,10 +171,12 @@ let main () =
   let handle_compile ct () =
     if !program_loaded = false then begin
       program_loaded := true;
-      ct := Controller.initialize !filename (textbox#text);
-      textbox#set_editable false;
-      let st = Controller.get_state !ct in
-      update matrix (st |> Model.State.to_list) (st |> Model.State.get_agent)
+      try 
+        ct := Controller.reset_prog !ct (textbox#text);
+        textbox#set_editable false;
+        let st = Controller.get_state !ct in
+        update matrix (st |> Model.State.to_list) (st |> Model.State.get_agent)
+      with Controller.InterpreterError msg -> prerr_endline (msg)
     end
     else prerr_endline "game already running" in
 
@@ -183,10 +184,9 @@ let main () =
   compile#connect#clicked ~callback:(handle_compile ct) |> ignore;
 
   let handle_play ct () =
-    if !run = true then prerr_endline "simulation already running"
+    if !run then prerr_endline "simulation already running"
     else if !program_loaded = false then prerr_endline "compile first"
     else begin run := true;
-      textbox#set_editable false;
       let t = Thread.create (
           let rec f () = if !run = false then prerr_endline "thread terminated"
             else begin
