@@ -5,9 +5,6 @@
    score achieved. It also stores the current level of the player.
 *)
 
-(** The type of a level *)
-type level
-
 (**The type of a game *)
 type t
 
@@ -16,7 +13,13 @@ type t
 val from_json : Yojson.Basic.t -> t
 
 (** [get_levels game] is the list of levels in this game. *)
-val get_levels : t -> level list
+val get_levels : t -> string list
 
 (** [get_highest_score game] is the sum of the scores from all completed levels.*)
 val get_highest_score : t -> int
+
+val get_highest_level : t -> int
+
+val get_id : t -> int
+
+val create_game : int -> int -> int -> string list -> t
