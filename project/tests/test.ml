@@ -121,7 +121,7 @@ let state_tests = [
   "Check color of current square after coloring" >:: 
   (fun _ ->  assert_equal Blue (get_current_color state4));
   "Check moving to a wall" >:: 
-  (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> move state4));
+  (fun _ ->  OUnit2.assert_raises (Wall_exception) (fun () -> move state4));
   "Check moving off the grid from west" >:: 
   (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> turn Left state1 |> 
                                                           move));

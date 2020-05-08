@@ -10,8 +10,11 @@
 (** The abstract type of values representing the game state. *)
 type t 
 
-(** Raised when a move cannot be performed. *)
+(** Raised when the player tries to go off the grid. *)
 exception Invalid_move
+
+(** Raised when the player tries to step on a wall. *)
+exception Wall_exception
 
 (** The type of a possible turn command. *)
 type direction = Right | Left
