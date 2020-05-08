@@ -1,0 +1,24 @@
+{
+  "games": [
+    {
+      "id": 1,
+      "highest_score": 0,
+      "highest_level": 1,
+      "levels": [
+        "level1.json",
+        "level2.json",
+        "level3.json"
+      ]
+    },
+    {
+      "id": 2,
+      "highest_score": 4,
+      "highest_level": 2,
+      "levels": [
+        "level1.json",
+        "level2.json",
+        "level3.json"
+      ]
+    }
+  ]
+}
