@@ -59,45 +59,15 @@
     {
       "x": 1,
       "y": 1,
-      "attribute": "red"
+      "attribute": "green"
     },
     {
       "x": 1,
-      "y": 2,
-      "attribute": "red"
-    },
-    {
-      "x": 1,
-      "y": 3,
-      "attribute": "blue"
-    },
-    {
-      "x": 2,
-      "y": 1,
-      "attribute": "red"
-    },
-    {
-      "x": 2,
       "y": 2,
       "attribute": "green"
     },
     {
-      "x": 2,
-      "y": 3,
-      "attribute": "red"
-    },
-    {
-      "x": 3,
-      "y": 1,
-      "attribute": "red"
-    },
-    {
-      "x": 3,
-      "y": 2,
-      "attribute": "blue"
-    },
-    {
-      "x": 3,
+      "x": 1,
       "y": 3,
       "attribute": "red"
     }

@@ -1,5 +1,7 @@
 exception Invalid_move
 
+exception Wall_exception
+
 type direction = Right | Left
 
 type agent = {
@@ -33,10 +35,18 @@ let new_position st =
   let x = st.agent.x in
   let y = st.agent.y in
   match st.agent.current_orien with
-  | N -> if y < st.size && (Grid.get_att_from_coord st.current_grid x (y+1))<> Wall then (x,y+1) else raise Invalid_move
-  | E -> if x < st.size && (Grid.get_att_from_coord st.current_grid (x+1) y)<> Wall then (x+1,y) else raise Invalid_move
-  | W -> if x > 1 && (Grid.get_att_from_coord st.current_grid (x-1) y)<> Wall then (x-1,y) else raise Invalid_move
-  | S -> if y > 1 && (Grid.get_att_from_coord st.current_grid x (y-1))<> Wall then (x,y-1) else raise Invalid_move
+  | N -> if y = st.size then raise Invalid_move
+    else if (Grid.get_att_from_coord st.current_grid x (y+1))= Wall then raise Wall_exception
+    else (x,y+1)
+  | E -> if x = st.size then raise (Invalid_move)
+    else if (Grid.get_att_from_coord st.current_grid (x+1) y) = Wall then raise Wall_exception
+    else (x+1,y)
+  | W -> if x = 1 then raise (Invalid_move )
+    else if (Grid.get_att_from_coord st.current_grid (x-1) y) = Wall then raise Wall_exception
+    else (x-1,y) 
+  | S -> if y = 1  then raise (Invalid_move)
+    else if (Grid.get_att_from_coord st.current_grid x (y-1)) = Wall then raise Wall_exception
+    else (x,y-1)
 
 let move st = 
   let x,y = new_position st in
@@ -97,12 +107,14 @@ let color cl st = {
   steps_left = st.steps_left - 1
 }
 
+
 (** [helper_list gl ac] is the list representation of [gl] added to list [ac].*)
 let rec helper_list (glst : Grid.square list) acc = match glst with
   | [] -> acc
   | {square_x=x; square_y=y; attribute=a}::t -> helper_list t ((x,y,a)::acc)
 
 let to_list st = helper_list st.current_grid []
+
 
 (**[helper_check_win] is true if each square in [winning_grid] is in the 
    list [current_grid] *)

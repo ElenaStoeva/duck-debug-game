@@ -16,9 +16,16 @@ let rec read_user_code st gr =
 
 (** [match_move st] is the new game state after agent has moved, and [st] if 
     moving agent raises exception. *)
-let match_move st = match State.move st with
-  | exception _ -> print_string 
-                     "\nYou cannot move off the grid. Keep stepping.\n"; st
+let match_move st = 
+  match State.move st with
+  | exception e -> begin match e with
+      | State.Invalid_move -> print_string 
+                                "\nYou cannot move off the grid. Keep stepping.\n"; st
+      | State.Wall_exception -> print_string 
+                                  "\nYou tried to step on an obstacle. This move is not permitted.\n"; st
+      | _ -> print_string 
+               "\nInvalid move.\n"; st
+    end
   | new_st -> new_st
 
 (** [color_of_int i] is the grid attribute corresponding to [i]. 
