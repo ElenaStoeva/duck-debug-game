@@ -34,17 +34,12 @@ let has_fun_def (Ast.Prog(ds, x)) =
     Raises [Undefined_color] if not. *)
 let has_color (Ast.Prog(ds, x)) =
   let f = function Ast.Color(i) -> 1 <= i && i <= 3 | _ -> true in
-  if List.for_all f x 
-  then Ast.Prog(ds, x)
+  if List.for_all f x = false then raise Undefined_color
   else if begin
     let lst d = match d with Ast.Def(_,_,cs) -> cs in
-    List.for_all (fun d -> List.for_all f (lst d)) ds end 
-  then Ast.Prog(ds, x)
-  else raise Undefined_color
-
-(* TODO: Func to check infinite mutual recursion in function applications. *)
-
-(* let has_var_def = failwith "Unimplemented" *)
+    List.for_all (fun d -> List.for_all f (lst d)) ds = false end 
+  then raise Undefined_color
+  else Ast.Prog(ds, x)
 
 (** [check_ast prog] is prog after performing semantic checking.
     Raises [Undefined_function] is there is an unbound function application.
