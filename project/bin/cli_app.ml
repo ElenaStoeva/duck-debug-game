@@ -1,49 +1,14 @@
-open Model
 open View
-open Interpreter
 
 (** [read_user_code st gr] is a move stream resulting from parsing user's 
     solution code for the level.
     Requires: [st] is a valid game state and [gr] is a valid grid. *)
-let rec read_user_code st gr =
-  Print.print_grid st gr;
+let rec read_user_code ct =
+  Print.print_grid (Controller.get_state ct) (Controller.get_grid ct);
   print_string "\nInput code:\n";
-  match read_line () with
-  | str -> begin try str |> Eval.parse |> Check.check_ast |> Eval.init_stream
-      with _ -> 
-        print_endline "\nInterpreting error. Please fix your code.\n"; 
-        read_user_code st gr end
-
-(** [match_move st] is the new game state after agent has moved, and [st] if 
-    moving agent raises exception. *)
-let match_move st = 
-  match State.move st with
-  | exception e -> begin match e with
-      | State.Invalid_move -> print_string 
-                                "\nYou cannot move off the grid. Keep stepping.\n"; st
-      | State.Wall_exception -> print_string 
-                                  "\nYou tried to step on an obstacle. This move is not permitted.\n"; st
-      | _ -> print_string 
-               "\nInvalid move.\n"; st
-    end
-  | new_st -> new_st
-
-(** [color_of_int i] is the grid attribute corresponding to [i]. 
-    Raises: [Failure] if [i] does not match valid color. *)
-let color_of_int i = match i with
-  | 1 -> Grid.Red
-  | 2 -> Grid.Green
-  | 3 -> Grid.Blue
-  | _ -> failwith "\nNon-defined color. Color command ignored.\n"
-
-(** [match_prim st m] is the state after primitive move [m] is applied.
-    Requires that [m] is not [None]. *)
-let match_prim st m = match m with
-  | Some Eval.M -> match_move st
-  | Some Eval.R -> State.turn State.Right st
-  | Some Eval.L -> State.turn State.Left st
-  | Some Eval.C (c) -> State.color (color_of_int c) st
-  | None -> failwith "Move stream malformed."
+  try Controller.reset_prog ct (read_line ())
+  with Controller.InterpreterError msg ->
+    print_endline msg; read_user_code ct
 
 
 (** [run_simulation st gr ms] prompts user and steps simulation of move stream 
@@ -51,44 +16,54 @@ let match_prim st m = match m with
     quits, or player code terminates.
     Raises: [Malformed_stream] if head of move stream created from user code 
     does not match valid command.  *)
-let rec run_simulation st gr ms =
-  Print.print_grid st gr;
-  let hd_opt = try Some (Eval.hd ms) 
-    with _ -> None in
-  if State.check_win st gr then print_endline ("\nCongratulations. You won!. Your score is: "^((Grid.get_score gr)|> Int.to_string))
-  else if (State.get_steps st)=0 then print_endline ("\nYou reached the maximum number of steps. Game over :(")
-  else if hd_opt =  None 
-  then print_endline "Your code terminated but you did not win :(\n"
-  else 
-    let _ = print_string "\nPress (n) or (Enter) to step the simulation \
-                          and (q) to quit.\n" in
-    let tl = Eval.tl ms in
-    match read_line () with
-    | "q" -> ()
-    (* | "s" -> () TODO: stop simulation *)
-    | ""
-    | "n" -> begin try run_simulation (match_prim st hd_opt) gr tl
-        with Failure msg -> print_string msg; run_simulation st gr tl end
-    | _ -> print_string "\nInvalid command.\n"; run_simulation st gr ms
+let rec run_simulation ct =
+  Print.print_grid (Controller.get_state ct) (Controller.get_grid ct);
+  print_string "\nPress (n) or (Enter) to step the simulation, \
+                (r) to stop simulation and retry, and (q) to quit.\n";
+  match read_line () with
+  | "q" -> ()
+  | "r" -> run_simulation (read_user_code ct)
+  | ""
+  | "n" -> match_result ct
+  | _ -> print_string "\nInvalid command.\n"; run_simulation ct
+and match_result ct =
+  try
+    begin
+      let retry () = print_endline "Press (r) to retry, or any key to quit.";
+        match read_line () with
+        | "r" -> run_simulation (read_user_code ct)
+        | _ -> () in 
+      match Controller.next ct with
+      | Winning i -> 
+        print_endline
+          ("\nCongratulations. You won! Your score is: "^
+           (Int.to_string i)^"/100"); 
+        retry ()
+      | Gameover s -> print_endline s; retry ()
+      | Next (ct',s) -> print_endline s; run_simulation ct'
+    end
+  with Sys_error msg -> print_endline msg
+
 
 (** [init_game ()] prompts user to enter level and initializes game with 
     appropriate the appropriate state and grid. *)
 let rec init_game () =
-  let st_gr fl =
-    let gr = fl |> Yojson.Basic.from_file |> Grid.from_json in
-    let st = State.init_state gr in 
-    run_simulation st gr (read_user_code st gr) in
+  let run fl =
+    let ct = Controller.initialize fl "" in
+    run_simulation (read_user_code ct) in
   match read_line () with
   | exception End_of_file -> ()
-  | "0" -> st_gr "resources/json_files/example.json"
-  | "1" -> st_gr "resources/json_files/level1.json"
-  | "2" -> st_gr "resources/json_files/level2.json"
-  | "3" -> st_gr "resources/json_files/level3.json"
-  | "99" -> st_gr "resources/json_files/level99.json"
+  | "0" -> run "resources/json_files/example.json"
+  | "1" -> run "resources/json_files/level1.json"
+  | "2" -> run "resources/json_files/level2.json"
+  | "3" -> run "resources/json_files/level3.json"
+  | "4" -> run "resources/json_files/level4.json"
+  | "99" -> run "resources/json_files/level99.json"
   | "q" -> ()
   | _-> begin 
       print_string "\nUnrecognized level. Please enter valid command: \n"; 
       init_game () end
+
 
 (** [main ()] prompts for the game to play, displays welcome message, and
     starts the game. *)

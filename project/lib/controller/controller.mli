@@ -5,7 +5,6 @@ type t
 
 type result = Winning of int | Gameover of string | Next of t * string
 
-
 val initialize : string -> string -> t
 
 val reset_prog : t -> string -> t

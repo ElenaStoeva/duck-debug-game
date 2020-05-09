@@ -11,7 +11,7 @@ let () = Jbuild_plugin.V1.send @@ {|
 (library
   (public_name controller)
   (name controller)
-  (libraries model interpreter)
+  (libraries model interpreter str)
  |} ^ preprocess ^ {|)
 
 |}
