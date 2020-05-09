@@ -16,19 +16,37 @@ let make_parse_test
 let parser_tests = [
   make_parse_test "Empty prog" "" (Prog ([],[]));
   make_parse_test "Empty chars" "   " (Prog ([],[]));
-  make_parse_test "No func" "MMRLMM" 
+  make_parse_test "Move and Turn only" "MMRLMM" 
     (Prog ([], [Move; Move; Right; Left; Move; Move]));
-  make_parse_test "No func with color" "M12L3M" 
+  make_parse_test "Colors only" "12321" 
+    (Prog ([], [Color(1); Color(2); Color(3); Color(2);Color(1);]));  
+  make_parse_test "Mixed" "M12L3M" 
     (Prog ([], [Move; Color(1); Color(2); Left; Color(3); Move]));
-  make_parse_test "Func application" "f=MRM;[f]" 
+  make_parse_test "Empty Func application" "f=;[f]" 
+    (Prog ([Def ("f", [], [])], [FunApp ("f", [])]));
+  make_parse_test "Func application no color" "f=MRM;[f]" 
     (Prog ([Def ("f", [], [Move; Right; Move])], [FunApp ("f", [])]));
-  make_parse_test "Infinite stream" "f=MRM[f];[f]" 
+  make_parse_test "Func application with color" "f=M1M;[f]" 
+    (Prog ([Def ("f", [], [Move; Color(1); Move])], [FunApp ("f", [])]));
+  make_parse_test "Two funcs" "g=MR;f=M[g];[f]"
+    (Prog ([Def ("g", [], [Move; Right]); Def ("f", [], [Move; FunApp ("g", [])])], 
+           [FunApp ("f", [])]));
+  make_parse_test "Three funcs" "g=MR;f=M[g];p=R[f];[p]"
+    (Prog ([Def ("g", [], [Move; Right]); Def ("f", [], [Move; FunApp ("g", []);]);
+            Def ("p", [], [Right; FunApp ("f", []);])], 
+           [FunApp ("p", [])]));
+  make_parse_test "One infinite stream" "f=MRM[f];[f]" 
     (Prog (
         [Def ("f", [], [Move; Right; Move; FunApp ("f", [])])], [FunApp ("f", [])])
     );
-  make_parse_test "Multiple funcs" "g=MR;f=M[g];[f]"
-    (Prog ([Def ("g", [], [Move; Right]); Def ("f", [], [Move; FunApp ("g", [])])], 
-           [FunApp ("f", [])]))
+  make_parse_test "Multiple funcs with an infinite stream" "g=MR[g];f=M[g];[f]" 
+    (Prog ([Def ("g", [], [Move; Right; FunApp ("g", [])]);
+            Def ("f", [], [Move; FunApp ("g", [])])], 
+           [FunApp ("f", [])]));      
+  make_parse_test "Infinite stream in an infinite stream" "g=MR[g];f=M[g][f];[f]" 
+    (Prog ([Def ("g", [], [Move; Right; FunApp ("g", [])]);
+            Def ("f", [], [Move; FunApp ("g", []); FunApp ("f", [])])], 
+           [FunApp ("f", [])]));
 ]
 
 let make_hd_test
