@@ -124,7 +124,8 @@ let rec helper_list (glst : square list) acc = match glst with
 
 let win_to_list gr = helper_list (get_winning_grid gr) []
 
-(** [get_square squares x y] is the square from the list [squares] with coordinates [x] and [y]*)
+(** [get_square squares x y] is the square from the list [squares] with 
+    coordinates [x] and [y]*)
 let rec get_square squares x y = 
   match squares with
   | [] -> failwith "No such square"

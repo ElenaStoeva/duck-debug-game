@@ -18,7 +18,7 @@ bisect:
 	bisect-ppx-report html && bisect-ppx-report summary
 
 docs:
-	dune build @doc-private
+	dune build @doc
 
 zip:
 	zip -v -r project_src.zip ./project ./json_files dune-project project.opam Makefile INSTALL.txt 
