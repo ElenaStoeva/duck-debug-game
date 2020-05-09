@@ -81,7 +81,8 @@ let handle_play (gui : View.Gui.t) () =
   end
 
 (** [main ()] initializes and starts the graphical user interface. *)
-let main () =
+let main str =
+  print_string str;
   print_endline "\nEnter level number (1) or (q) to quit:";
   let fl = match read_line () with
     | exception End_of_file -> Stdlib.exit 0
