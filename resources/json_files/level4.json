@@ -1,7 +1,7 @@
 {
   "instructions": "AAAAAAAAAA",
   "size": 10,
-  "score": 30,
+  "shortest_solution": 30,
   "steps": 50,
   "agent": {
     "agent_x": 2,
@@ -43,19 +43,19 @@
       "x": 1,
       "y": 7,
       "attribute": "red"
-    },    
-    {
-      "x": 1,
-      "y": 8,
-      "attribute": "red"
     },
     {
       "x": 1,
-      "y": 9,
+      "y": 8,
       "attribute": "red"
     },
     {
       "x": 1,
+      "y": 9,
+      "attribute": "red"
+    },
+    {
+      "x": 1,
       "y": 10,
       "attribute": "red"
     },
@@ -93,7 +93,8 @@
       "x": 2,
       "y": 7,
       "attribute": "red"
-    },    {
+    },
+    {
       "x": 2,
       "y": 8,
       "attribute": "red"
@@ -142,19 +143,19 @@
       "x": 3,
       "y": 7,
       "attribute": "red"
-    },    
-    {
-      "x": 3,
-      "y": 8,
-      "attribute": "red"
     },
     {
       "x": 3,
-      "y": 9,
+      "y": 8,
       "attribute": "red"
     },
     {
       "x": 3,
+      "y": 9,
+      "attribute": "red"
+    },
+    {
+      "x": 3,
       "y": 10,
       "attribute": "red"
     },
@@ -192,7 +193,8 @@
       "x": 4,
       "y": 7,
       "attribute": "red"
-    },    {
+    },
+    {
       "x": 4,
       "y": 8,
       "attribute": "red"
@@ -241,7 +243,7 @@
       "x": 5,
       "y": 7,
       "attribute": "red"
-    },    
+    },
     {
       "x": 5,
       "y": 8,
@@ -291,7 +293,7 @@
       "x": 6,
       "y": 7,
       "attribute": "red"
-    },    
+    },
     {
       "x": 6,
       "y": 8,
@@ -341,7 +343,7 @@
       "x": 7,
       "y": 7,
       "attribute": "red"
-    },    
+    },
     {
       "x": 7,
       "y": 8,
@@ -391,7 +393,7 @@
       "x": 8,
       "y": 7,
       "attribute": "red"
-    },    
+    },
     {
       "x": 8,
       "y": 8,
@@ -441,7 +443,7 @@
       "x": 9,
       "y": 7,
       "attribute": "red"
-    },    
+    },
     {
       "x": 9,
       "y": 8,
@@ -491,7 +493,8 @@
       "x": 10,
       "y": 7,
       "attribute": "red"
-    },    {
+    },
+    {
       "x": 10,
       "y": 8,
       "attribute": "red"
@@ -542,7 +545,8 @@
       "x": 1,
       "y": 7,
       "attribute": "red"
-    },    {
+    },
+    {
       "x": 1,
       "y": 8,
       "attribute": "red"
@@ -586,7 +590,7 @@
       "x": 6,
       "y": 7,
       "attribute": "red"
-    },    
+    },
     {
       "x": 6,
       "y": 8,

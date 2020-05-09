@@ -24,7 +24,7 @@ type t = {
   agent: agent;
   start_grid : square list;
   final_grid : square list;
-  score : int;
+  shortest_solution : int;
   max_steps : int;
 }
 
@@ -88,7 +88,7 @@ let from_json json = {
       |> to_list 
       |> List.map square_of_json
     );
-  score = Yojson.Basic.Util.(json |> member "score" |> to_int);
+  shortest_solution = Yojson.Basic.Util.(json |> member "shortest_solution" |> to_int);
   max_steps = Yojson.Basic.Util.(json |> member "steps" |> to_int);
 }
 
@@ -133,6 +133,6 @@ let rec get_square squares x y =
 
 let get_att_from_coord squares x y = get_square_att (get_square squares x y)
 
-let get_score g = g.score
+let get_score g = g.shortest_solution + 100
 
 let get_max_steps g = g.max_steps

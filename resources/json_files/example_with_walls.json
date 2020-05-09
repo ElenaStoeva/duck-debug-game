@@ -1,7 +1,7 @@
 {
   "instructions": "This is just a 3x3 grid with randomly colored squares.",
   "size": 3,
-  "score": 30,
+  "shortest_solution": 30,
   "steps": 50,
   "agent": {
     "agent_x": 1,
