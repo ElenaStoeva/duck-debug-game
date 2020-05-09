@@ -43,26 +43,27 @@ let draw_win m gr st =
   List.map (fun (x,y,fl) -> m.(x-1).(y-1)#set_file fl; (x,y,fl)) wlst  
   |> ignore
 
+let img_file x y agent str =
+  let ax,ay,dir = agent in
+  if x = ax && y = ay then 
+    match dir with
+    | Model.Grid.N -> "resources/graphics/n_" ^ str
+    | Model.Grid.E -> "resources/graphics/e_" ^ str
+    | Model.Grid.W -> "resources/graphics/w_" ^ str
+    | Model.Grid.S -> "resources/graphics/s_" ^ str
+  else "resources/graphics/" ^ str
+
 let update m glist agent =
   let f e = match e with
     | x, y, Model.Grid.Red -> 
-      m.(x-1).(y-1)#set_file "resources/graphics/r.png"; e
+      m.(x-1).(y-1)#set_file (img_file x y agent "r.png"); e
     | x, y, Model.Grid.Green -> 
-      m.(x-1).(y-1)#set_file "resources/graphics/g.png"; e
+      m.(x-1).(y-1)#set_file (img_file x y agent "g.png"); e
     | x, y, Model.Grid.Blue -> 
-      m.(x-1).(y-1)#set_file "resources/graphics/b.png"; e
+      m.(x-1).(y-1)#set_file (img_file x y agent "b.png"); e
     | x, y, Model.Grid.Wall -> 
-      m.(x-1).(y-1)#set_file "resources/graphics/o.png"; e in
-  let _ = glist |> List.map f in
-  let g = match agent with
-    | (x,y,Model.Grid.N) -> 
-      m.(x-1).(y-1)#set_file "resources/graphics/n.png"
-    | (x,y,Model.Grid.E) -> 
-      m.(x-1).(y-1)#set_file "resources/graphics/e.png"
-    | (x,y,Model.Grid.W) -> 
-      m.(x-1).(y-1)#set_file "resources/graphics/w.png"
-    | (x,y,Model.Grid.S) -> 
-      m.(x-1).(y-1)#set_file "resources/graphics/s.png" in g; ()
+      m.(x-1).(y-1)#set_file (img_file x y agent "w.png"); e in
+  glist |> List.map f |> ignore
 
 let initialize_grid (grid : GPack.grid) =
   let temp = 
