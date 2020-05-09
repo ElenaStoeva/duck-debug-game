@@ -108,6 +108,8 @@ let eval_tests = [
     (parse "g=MR;f=MRM[g][f];[f]");
   make_check_ast_test "Color check" "f=1M2RM3[f];123[f]" 
     (parse "f=1M2RM3[f];123[f]");
+  "Check undefined function" >:: 
+  (fun _ ->  OUnit2.assert_raises Undefined_function (fun () -> "f=MRM;[g]"|> parse |> check_ast););
 ]
 
 let grid = "../../../../resources/json_files/example_with_walls.json" |> Yojson.Basic.from_file |> from_json
