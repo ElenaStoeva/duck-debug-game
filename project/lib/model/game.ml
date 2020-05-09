@@ -9,7 +9,9 @@ let from_json json = {
   id = Yojson.Basic.Util.(json |> member "id" |> to_int);
   highest_score = Yojson.Basic.Util.(json |> member "highest_score" |> to_int);
   highest_level = Yojson.Basic.Util.(json |> member "highest_level" |> to_int);
-  levels = Yojson.Basic.Util.(json |> member "levels" |> to_list |> List.map to_string);
+  levels = Yojson.Basic.Util.(
+      json |> member "levels" |> to_list |> List.map to_string
+    );
 }
 
 let get_id game = game.id

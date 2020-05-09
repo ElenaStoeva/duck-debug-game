@@ -10,7 +10,7 @@ let () = Jbuild_plugin.V1.send @@ {|
 
 (library
   (name view)
-  (libraries model)
+  (libraries lablgtk3 controller model)
  |} ^ preprocess ^ {|)
 
 |}

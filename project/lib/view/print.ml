@@ -51,7 +51,8 @@ let print_grid st gr =
   let lst = Model.Grid.win_to_list gr in
   let glst = st |> Model.State.to_list in
   let wlst = win_grid lst glst [] in
-  let f = fun (x,y,a) -> begin if ax <> x || ay <> y then (x,y,(string_of_square a)) 
+  let f = fun (x,y,a) -> 
+    begin if ax <> x || ay <> y then (x,y,(string_of_square a)) 
       else match Model.State.get_agent st with 
         | (x,y,Model.Grid.N) -> (x,y,"^")
         | (x,y,Model.Grid.E) -> (x,y,">")

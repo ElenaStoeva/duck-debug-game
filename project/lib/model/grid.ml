@@ -24,7 +24,7 @@ type t = {
   agent: agent;
   start_grid : square list;
   final_grid : square list;
-  score : int;
+  shortest_solution : int;
   max_steps : int;
 }
 
@@ -88,7 +88,7 @@ let from_json json = {
       |> to_list 
       |> List.map square_of_json
     );
-  score = Yojson.Basic.Util.(json |> member "score" |> to_int);
+  shortest_solution = Yojson.Basic.Util.(json |> member "shortest_solution" |> to_int);
   max_steps = Yojson.Basic.Util.(json |> member "steps" |> to_int);
 }
 
@@ -124,7 +124,8 @@ let rec helper_list (glst : square list) acc = match glst with
 
 let win_to_list gr = helper_list (get_winning_grid gr) []
 
-(** [get_square squares x y] is the square from the list [squares] with coordinates [x] and [y]*)
+(** [get_square squares x y] is the square from the list [squares] with 
+    coordinates [x] and [y]*)
 let rec get_square squares x y = 
   match squares with
   | [] -> failwith "No such square"
@@ -132,6 +133,6 @@ let rec get_square squares x y =
 
 let get_att_from_coord squares x y = get_square_att (get_square squares x y)
 
-let get_score g = g.score
+let get_score g = g.shortest_solution + 100
 
 let get_max_steps g = g.max_steps

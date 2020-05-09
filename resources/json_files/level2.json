@@ -1,7 +1,7 @@
 {
   "instructions": "Draw the letter C in red color.",
   "size": 7,
-  "score": 30,
+  "shortest_solution": 30,
   "steps": 50,
   "agent": {
     "agent_x": 6,
