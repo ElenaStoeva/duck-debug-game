@@ -43,7 +43,7 @@ let parser_tests = [
     (Prog ([Def ("g", [], [Move; Right; FunApp ("g", [])]);
             Def ("f", [], [Move; FunApp ("g", [])])], 
            [FunApp ("f", [])]));      
-  make_parse_test "Infinite stream in an infinite stream" "g=MR[g];f=M[g][f];[f]" 
+  make_parse_test "Two infinite streams" "g=MR[g];f=M[g][f];[f]" 
     (Prog ([Def ("g", [], [Move; Right; FunApp ("g", [])]);
             Def ("f", [], [Move; FunApp ("g", []); FunApp ("f", [])])], 
            [FunApp ("f", [])]));
@@ -96,10 +96,16 @@ let eval_tests = [
   make_check_ast_test "No func check_ast" "MMRML" (parse "MMRML");
   make_check_ast_test "Func application check_ast" "f=MRM;[f]" 
     (parse "f=MRM;[f]");
-  make_check_ast_test "Multiple func app check" "f=MRM;g=M;M[g]R[f]" 
+  make_check_ast_test "Two func app check" "f=MRM;g=M;M[g]R[f]" 
     (parse "f=MRM;g=M;M[g]R[f]");
+  make_check_ast_test "Three func app check" "f=MRM;g=M;p=L;M[g]L[p]R[f]" 
+    (parse "f=MRM;g=M;p=L;M[g]L[p]R[f]");
   make_check_ast_test "Infinite stream check_ast" "f=MRM[f];[f]" 
     (parse "f=MRM[f];[f]");
+  make_check_ast_test "Two infinite streams" "f=MRM[f];g=M[f][g];[g]" 
+    (parse "f=MRM[f];g=M[f][g];[g]");
+  make_check_ast_test "Func in an infinite stream" "g=MR;f=MRM[g][f];[f]" 
+    (parse "g=MR;f=MRM[g][f];[f]");
   make_check_ast_test "Color check" "f=1M2RM3[f];123[f]" 
     (parse "f=1M2RM3[f];123[f]");
 ]
@@ -109,62 +115,56 @@ let grid = "../../../../resources/json_files/example_with_walls.json" |> Yojson.
 (** Position (1,1,N) *)
 let state1 = init_state grid
 
-(** Position (1,2,E) *)
-let state3 = turn Right (move state1)
 
-(** Position (1,2,E) *)
-let state4 = color Blue state3
-
-(** Position (1,2,W) *)
-let state5 = turn Left (move state1)
-
-(** Position (1,2,S) *)
-let state6 = turn Right state3
-
+(** Test suit for State *)
 let state_tests = [
   "Check initial agent position" >:: 
   (fun _ ->  assert_equal (1,1) (get_agent_x grid,get_agent_y grid));
   "Check moving to north" >:: 
-  (fun _ ->  assert_equal (1,2,N) (move state1 |> get_agent));
+  (fun _ ->  assert_equal (1,2,N) ( state1 |> move |> get_agent));
   "Check moving to south" >:: 
-  (fun _ ->  assert_equal (1,1,S) (move state6 |> get_agent));
+  (fun _ ->  assert_equal (1,1,S) (state1 |> move |> turn Right |> turn Right  
+                                   |> move |> get_agent));
   "Check moving to west" >:: 
-  (fun _ ->  assert_equal (1,1,W) ( turn Right state1 |> move |> turn Left |>
-                                    turn Left |> move |> get_agent));
+  (fun _ ->  assert_equal (1,1,W) (state1 |> turn Right  |> move |> turn Left |>
+                                   turn Left |> move |> get_agent));
   "Check turning right" >:: 
-  (fun _ ->  assert_equal (1,2,E) (turn Right (move state1) |> get_agent));
+  (fun _ ->  assert_equal (1,2,E) (state1|> move |> turn Right  |> get_agent));
   "Check turning left" >:: 
-  (fun _ ->  assert_equal (1,2,W) (move state1 |> turn Left |> get_agent));
+  (fun _ ->  assert_equal (1,2,W) (state1 |> move  |> turn Left |> get_agent));
   "Check color of current square after coloring" >:: 
-  (fun _ ->  assert_equal Blue (get_current_color state4));
-  "Check moving to a wall" >:: 
-  (fun _ ->  OUnit2.assert_raises (Wall_exception) (fun () -> move state4));
+  (fun _ ->  assert_equal Blue (state1 |> color Blue |> get_current_color));
+  "Check moving to an obstacle" >:: 
+  (fun _ ->  OUnit2.assert_raises (Wall_exception) (fun () ->state1 |> move |> 
+                                                             turn Right 
+                                                             |> color Blue  
+                                                             |> move ));
   "Check moving off the grid from west" >:: 
-  (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> turn Left state1 |> 
+  (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> state1 |> turn Left |> 
                                                           move));
   "Check moving off the grid from north" >:: 
-  (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> move state1 |> 
+  (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> state1 |> move |>
                                                           move |> move));   
   "Check moving off the grid from east" >:: 
-  (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> turn Left state1 |> 
+  (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> state1 |> turn Left |> 
                                                           move |> move |> move));   
   "Check moving off the grid from south" >:: 
-  (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> turn Left state1 |> 
+  (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> state1 |> turn Left |> 
                                                           turn Left |> move));                                               
   "Check turning left from west" >:: (fun _ ->  assert_equal (1,1,S) 
-                                         ( turn Left state1 |> turn Left  |> 
+                                         ( state1 |> turn Left |> turn Left  |> 
                                            get_agent));
   "Check turning right from west" >:: (fun _ ->  assert_equal (1,1,N) 
-                                          ( turn Left state1 |> turn Right  |> 
+                                          ( state1 |> turn Left |> turn Right |> 
                                             get_agent));
   "Check turning right from south" >:: (fun _ ->  assert_equal (1,1,W) 
-                                           ( turn Left state1 |> turn Left |>
+                                           ( state1 |> turn Left |> turn Left |>
                                              turn Right |> get_agent));  
   "Check turning left from south" >:: (fun _ ->  assert_equal (1,1,E) 
-                                          ( turn Left state1 |> turn Left |>
-                                            turn Left |> get_agent));                                                           
+                                          (state1 |> turn Left|> turn Left |>
+                                           turn Left |> get_agent));                                                           
   "Check no winning" >:: (fun _ -> assert (not (check_win state1 grid)));
-  "Check winning" >:: (fun _ -> assert (let state = color Green state1 
+  "Check winning" >:: (fun _ -> assert (let state = state1 |> color Green 
                                                     |> move |> color Green |> 
                                                     move |> color Red 
                                         in check_win state grid));
