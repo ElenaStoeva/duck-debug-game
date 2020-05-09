@@ -9,6 +9,7 @@ let preprocess =
 let () = Jbuild_plugin.V1.send @@ {|
 
 (library
+ (public_name interpreter)
  (name interpreter)
  |} ^ preprocess ^ {|)
 
