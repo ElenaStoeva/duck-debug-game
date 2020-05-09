@@ -79,8 +79,15 @@ let handle_play (gui : View.Gui.t) () =
 
 (** [main ()] initializes and starts the graphical user interface. *)
 let main () =
-  let filename = "resources/json_files/level4.json" in
-  let gui = View.Gui.initialize filename (Controller.initialize filename "") in
+  print_endline "\nEnter level number (1) or (q) to quit:";
+  let fl = match read_line () with
+    | exception End_of_file -> Stdlib.exit 0
+    | "1" -> "resources/json_files/level4.json"
+    | "q" -> Stdlib.exit 0 
+    | _ -> print_endline "Unrecognized level."; Stdlib.exit 0 in
+
+
+  let gui = View.Gui.initialize fl (Controller.initialize fl "") in
 
   gui.window#connect#destroy ~callback:Main.quit |> ignore;
   gui.next#connect#clicked ~callback:(handle_next gui) |> ignore; 
