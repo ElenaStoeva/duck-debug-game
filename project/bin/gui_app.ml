@@ -7,7 +7,8 @@ let handle_next (gui : View.Gui.t) () =
   if gui.program_loaded then 
     let _ = match Controller.next gui.ct with
       | Gameover m -> View.Gui.message gui ("try again "^m)
-      | Winning i -> View.Gui.message gui ("you won "^(string_of_int i))
+      | Winning i -> View.Gui.message gui 
+                       (" You won! Score: "^(string_of_int i)^"/100")
       | Next (ct',m) -> View.Gui.message gui m; gui.ct <- ct' in
     let st = Controller.get_state gui.ct in
     View.Gui.update gui.grid_matrix 
@@ -56,7 +57,9 @@ let rec thread_aux (gui : View.Gui.t) =
   else begin
     let b = match Controller.next gui.ct with
       | Gameover m -> View.Gui.message gui ("try again "^m); false
-      | Winning i -> View.Gui.message gui ("score "^(string_of_int i)); false
+      | Winning i -> 
+        View.Gui.message gui 
+          (" You won! Score: "^(string_of_int i)^"/100"); false
       | Next (ct',m) -> View.Gui.message gui m; gui.ct <- ct'; true in
     let st = Controller.get_state gui.ct in
     View.Gui.update gui.grid_matrix (st |> Model.State.to_list) 

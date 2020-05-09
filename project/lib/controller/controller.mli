@@ -3,7 +3,7 @@ exception InterpreterError of string
 
 type t
 
-type result = Winning of int * int | Gameover of string | Next of t * string
+type result = Winning of int | Gameover of string | Next of t * string
 
 val initialize : string -> string -> t
 

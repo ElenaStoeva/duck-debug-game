@@ -5,7 +5,6 @@ open Interpreter.Check
 open Model.Grid
 open Model.State
 
-(* TODO: AST comparator & printer *)
 let make_parse_test
     (name : string)
     (program : string)
@@ -116,7 +115,6 @@ let grid = "../../../../resources/json_files/example_with_walls.json" |> Yojson.
 
 (** Position (1,1,N) *)
 let state1 = init_state grid
-
 
 (** Test suit for State *)
 let state_tests = [

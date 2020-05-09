@@ -10,7 +10,7 @@ type t = {
   stream : Eval.move_stream;
 }
 
-type result = Winning of int * int | Gameover of string | Next of t * string
+type result = Winning of int | Gameover of string | Next of t * string
 
 let interpret_program prog_str =
   try prog_str 
@@ -78,7 +78,7 @@ let next t =
   let hd_opt = try Some (Eval.hd t.stream) 
     with _ -> None in
   if State.check_win t.state t.grid 
-  then Winning ((calc_score t),(Grid.get_score t.grid))
+  then Winning (calc_score t)
   else if (State.get_steps t.state) = 0 
   then Gameover ("You reached the maximum number of steps. Game over :(")
   else if hd_opt =  

@@ -34,11 +34,10 @@ and match_result ct =
         | "r" -> run_simulation (read_user_code ct)
         | _ -> () in 
       match Controller.next ct with
-      (* TODO - print highest possible score. *)
-      | Winning (i1, i2) -> 
+      | Winning i -> 
         print_endline
-          ("\nCongratulations. You won! Your score is: "^(Int.to_string i1)^
-           ". Highest possible score: "^(Int.to_string i2)); 
+          ("\nCongratulations. You won! Your score is: "^
+           (Int.to_string i)^"/100"); 
         retry ()
       | Gameover s -> print_endline s; retry ()
       | Next (ct',s) -> print_endline s; run_simulation ct'
