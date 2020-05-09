@@ -54,6 +54,7 @@ let rec thread_aux (gui : View.Gui.t) =
   if gui.run = false 
   then View.Gui.message gui "simulation terminated"
   else begin
+    View.Gui.message gui "simulation running";
     let b = match Controller.next gui.ct with
       | Gameover m -> View.Gui.message gui ("try again "^m); false
       | Winning i -> View.Gui.message gui ("score "^(string_of_int i)); false
@@ -61,10 +62,9 @@ let rec thread_aux (gui : View.Gui.t) =
     let st = Controller.get_state gui.ct in
     View.Gui.update gui.grid_matrix (st |> Model.State.to_list) 
       (st |> Model.State.get_agent);
-    View.Gui.message gui "simulation running";
-    Thread.delay 0.5; 
+    Thread.delay 0.05; 
     if b then thread_aux gui 
-    else gui.run <- false; View.Gui.message gui "simulation terminated"
+    else gui.run <- false
   end
 
 (** [handle_play gui ()] is the handler function for the button [play].

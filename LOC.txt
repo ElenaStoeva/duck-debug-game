@@ -1,0 +1,2 @@
+The class file in project/lib/view/gui_class.ml was generated using the lablgtk3
+tool lablgladecc3 so it should be excluded in the cloc count. It is 56 lines.
