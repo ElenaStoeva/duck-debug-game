@@ -4,26 +4,50 @@ Instructions for Running and Playing the Game:
 Game objective: Write code to move agent on a grid and achieve the indicated 
 winning state.
 
-To run the game:
+- After you unzip navigate to the directory of the Makefile to run the game 
+  the following libraries are required:
+  - lablgtk3
+  - yojson
+  - str
+  - thread
+  - dune
+  - bisect_ppx
+  - ocamllex
+  - menhir
 
-- After you unzip navigate to the directory of the Makefile
+- Please install them using the "opam install" command.
 
-- On command shell, type "make run".
+- If any of them fails due to unmet system dependencies, install any program
+  required by the system using the "apt-get install" command. For example, 
+  lablgtk3 requirements can be installed with
+  -"sudo apt-get install libcairo2-dev libexpat1-dev libgtk-3-dev"
 
-- When prompted to pick level, enter "1", "2", or "3". Those are the 3 sample
-levels we currently have.
+- If you are on windows WSL you must download an X-server to support graphical
+  applications based on Linux. You can check this ubuntu wiki page for further
+  option: "https://wiki.ubuntu.com/WSL#Running_Graphical_Applications"
 
-- When prompted to enter code, write code that would solve the given task,
-following the syntax described below. It is possible to come up with long or 
-short solutions to the level. In the future, we will implement a point system 
-rewarding more efficient solutions. 
+- On command shell, type "make build". This should successfully build the
+  application with dune if everything is installed correctly.
 
-- After entering code, press "n" to step the simulation of the agent's 
-movements based on the move sequence your code provided.
+- Now you can choose between running "make cli" or "make gui" which would
+  build and run the corresponding command line of graphical user interface.
+
+- When prompted to pick level, enter "1", "2", "3", "4" or "5". A supplemental
+  documentation explaining each level and their solutions are added as a
+  "level.pdf" in the project directory.
+
+- To write code that would solve the given task, either write it in the textbox
+  on the lower left corner or the terminal in cli. It is possible to come up 
+  with long or short solutions to the level but there are certain limits on how
+  long the solution can be. Shorter solutions are worth more points.
+  The goal of the game is to draw the image displayed on the right grid. 
+
+- After entering code, follow the onscreen elements to run the game.
 
 - Simulation will terminate with the appropriate message, either when you 
-achieve the winning state, or your code terminates in a non-winning state. 
-You can press "q" any time during the simulation stage to quit.
+  achieve the winning state, or your code terminates in a non-winning state. 
+  You can press "q" in the cli or "quit" button in the gui at any time during 
+  the simulation stage to quit.
 
 Game language syntax:
 'M' - Move Forward
@@ -32,9 +56,11 @@ Game language syntax:
 '1' - Color Square Red
 '2' - Color Square Green
 '3' - Color Square Blue
-'f=' - Define Function f
+'f =' - Define Function f
+'f -x -y = xy' - Define f with two arguments x and y that concatanates them
 '[f]' - Call Function f
-';' - Separator between "lines of code".
+'[f -MRMRL -RRR]' - apply f with two arguments
+';' - Separator between definitions.
 
 All function definitions must be declared before any commands.
 
@@ -51,4 +77,19 @@ application of g), calls f.
 recursion is allowed, game will terminate if winning state is achieved at any 
 point during the execution. We used streams to enable player code to provide 
 infinite move sequences.)
+
+"f -x = xR[f -xM]; [f -M]" -> outputs MRMMRMMMRMMMMR...
+
+Comments on documentation:
+  - Running the make docs command produces documentation under the folder
+    "_build/default/_doc/_html/index.html". Since we are using dune as a build
+    system, we use odoc to generate documentation. For some reason even though
+    we dont have a module named project odoc generates a index file named
+    project which can be ignored. We don't have an entry in our documentation as
+    app.ml is a 2line script that executes the code and is not a part of our
+    public signatures.
+
+Comments on code:
+  - The configuration for bisect for dune was written using the code provided
+    in the bisect github repository.
 
