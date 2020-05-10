@@ -86,7 +86,7 @@ let main str =
   print_endline "\nEnter level number (1) or (q) to quit:";
   let fl = match read_line () with
     | exception End_of_file -> Stdlib.exit 0
-    | "1" -> "resources/json_files/level4.json"
+    | "1" -> "resources/json_files/level7.json"
     | "2" -> "resources/json_files/level5.json"
     | "3" -> "resources/json_files/level6.json"
     | "q" -> Stdlib.exit 0 
