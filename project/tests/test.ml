@@ -46,15 +46,18 @@ let parser_tests = [
   make_parse_test "Func application with color" "f=M1M;[f]" 
     (Prog ([Def ("f", [], [Move; Color(1); Move])], [FunApp ("f", [])]));
   make_parse_test "Two funcs" "g=MR;f=M[g];[f]"
-    (Prog ([Def ("g", [], [Move; Right]); Def ("f", [], [Move; FunApp ("g", [])])], 
+    (Prog ([Def ("g", [], [Move; Right]); 
+            Def ("f", [], [Move; FunApp ("g", [])])], 
            [FunApp ("f", [])]));
   make_parse_test "Three funcs" "g=MR;f=M[g];p=R[f];[p]"
-    (Prog ([Def ("g", [], [Move; Right]); Def ("f", [], [Move; FunApp ("g", []);]);
+    (Prog ([Def ("g", [], [Move; Right]); 
+            Def ("f", [], [Move; FunApp ("g", []);]);
             Def ("p", [], [Right; FunApp ("f", []);])], 
            [FunApp ("p", [])]));
   make_parse_test "One infinite stream" "f=MRM[f];[f]" 
     (Prog (
-        [Def ("f", [], [Move; Right; Move; FunApp ("f", [])])], [FunApp ("f", [])])
+        [Def ("f", [], [Move; Right; Move; 
+                        FunApp ("f", [])])], [FunApp ("f", [])])
     );
   make_parse_test "Multiple funcs with an infinite stream" "g=MR[g];f=M[g];[f]" 
     (Prog ([Def ("g", [], [Move; Right; FunApp ("g", [])]);
@@ -126,16 +129,24 @@ let eval_tests = [
   make_check_ast_test "Color check" "f=1M2RM3[f];123[f]" 
     (parse "f=1M2RM3[f];123[f]");
   "Check undefined function" >:: 
-  (fun _ ->  OUnit2.assert_raises Undefined_function (fun () -> "f=MRM;[g]"|> parse |> check_ast););
+  (fun _ ->  
+     OUnit2.assert_raises 
+       Undefined_function (fun () -> "f=MRM;[g]"|> parse |> check_ast););
   "Check undefined color" >:: 
-  (fun _ ->  OUnit2.assert_raises Undefined_color (fun () -> "f=M5M;[f]"|> parse |> check_ast););
+  (fun _ ->  
+     OUnit2.assert_raises 
+       Undefined_color (fun () -> "f=M5M;[f]"|> parse |> check_ast););
 ]
 
 (** A grid with obstacles*)
-let grid1 = "../../../../resources/json_files/example_with_walls.json" |> Yojson.Basic.from_file |> from_json
+let grid1 = "../../../../resources/json_files/example_with_walls.json" 
+            |> Yojson.Basic.from_file 
+            |> from_json
 
 (** A grid without obstacles*)
-let grid2 = "../../../../resources/json_files/example.json" |> Yojson.Basic.from_file |> from_json
+let grid2 = "../../../../resources/json_files/example.json" 
+            |> Yojson.Basic.from_file 
+            |> from_json
 
 (** Position (1,1,N) *)
 let state1 = init_state grid1
@@ -149,11 +160,13 @@ let state_tests = [
   "Check moving to north" >:: 
   (fun _ ->  assert_equal (1,2,N) ( state1 |> move |> get_agent));
   "Check moving to south" >:: 
-  (fun _ ->  assert_equal (1,1,S) (state1 |> move |> turn Right |> turn Right  
-                                   |> move |> get_agent));
+  (fun _ ->  assert_equal (1,1,S) 
+      (state1 |> move |> turn Right |> turn Right  
+       |> move |> get_agent));
   "Check moving to west" >:: 
-  (fun _ ->  assert_equal (1,1,W) (state1 |> turn Right  |> move |> turn Left |>
-                                   turn Left |> move |> get_agent));
+  (fun _ ->  assert_equal (1,1,W) 
+      (state1 |> turn Right  |> move |> turn Left |>
+       turn Left |> move |> get_agent));
   "Check turning right" >:: 
   (fun _ ->  assert_equal (1,2,E) (state1|> move |> turn Right  |> get_agent));
   "Check turning left" >:: 
@@ -161,46 +174,50 @@ let state_tests = [
   "Check color of current square after coloring" >:: 
   (fun _ ->  assert_equal Blue (state1 |> color Blue |> get_current_color));
   "Check moving to an obstacle" >:: 
-  (fun _ ->  OUnit2.assert_raises (Wall_exception) (fun () ->state1 |> move |> 
-                                                             turn Right 
-                                                             |> color Blue  
-                                                             |> move ));
+  (fun _ ->  OUnit2.assert_raises (Wall_exception) 
+      (fun () ->state1 |> move |> 
+                turn Right 
+                |> color Blue  
+                |> move ));
   "Check moving off the grid1 from west" >:: 
-  (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> state1 |> turn Left |> 
-                                                          move));
+  (fun _ ->  OUnit2.assert_raises Invalid_move 
+      (fun () -> state1 |> turn Left |> move));
   "Check moving off the grid1 from north" >:: 
-  (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> state1 |> move |>
-                                                          move |> move));   
+  (fun _ ->  OUnit2.assert_raises Invalid_move 
+      (fun () -> state1 |> move |> move |> move));   
   "Check moving off the grid1 from east" >:: 
-  (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> state1 |> turn Left |> 
-                                                          move |> move |> move));   
+  (fun _ ->  OUnit2.assert_raises Invalid_move 
+      (fun () -> state1 |> turn Left |> move |> move |> move));   
   "Check moving off the grid1 from south" >:: 
-  (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> state1 |> turn Left |> 
-                                                          turn Left |> move));                                               
-  "Check turning left from west" >:: (fun _ ->  assert_equal (1,1,S) 
-                                         ( state1 |> turn Left |> turn Left  |> 
-                                           get_agent));
-  "Check turning right from west" >:: (fun _ ->  assert_equal (1,1,N) 
-                                          ( state1 |> turn Left |> turn Right |> 
-                                            get_agent));
-  "Check turning right from south" >:: (fun _ ->  assert_equal (1,1,W) 
-                                           ( state1 |> turn Left |> turn Left |>
-                                             turn Right |> get_agent));  
-  "Check turning left from south" >:: (fun _ ->  assert_equal (1,1,E) 
-                                          (state1 |> turn Left|> turn Left |>
-                                           turn Left |> get_agent));                                                           
+  (fun _ ->  OUnit2.assert_raises Invalid_move 
+      (fun () -> state1 |> turn Left |> turn Left |> move));                                               
+  "Check turning left from west" >:: 
+  (fun _ ->  assert_equal (1,1,S) 
+      ( state1 |> turn Left |> turn Left  |> get_agent));
+  "Check turning right from west" >:: 
+  (fun _ ->  assert_equal (1,1,N) 
+      ( state1 |> turn Left |> turn Right |> get_agent));
+  "Check turning right from south" >:: 
+  (fun _ ->  assert_equal (1,1,W) 
+      ( state1 |> turn Left |> turn Left |> turn Right |> get_agent));  
+  "Check turning left from south" >:: 
+  (fun _ ->  assert_equal (1,1,E) 
+      (state1 |> turn Left|> turn Left |> turn Left |> get_agent));                                                           
   "Check no winning" >:: (fun _ -> assert (not (check_win state1 grid1)));
-  "Check winning" >:: (fun _ -> assert (let state = state1 |> color Green 
-                                                    |> move |> color Green |> 
-                                                    move |> color Red 
-                                        in check_win state grid1));
-  "Check steps left" >::(fun _ ->  assert_equal 49 
-                            ( move state1 |> get_steps));
-  "Check initial score" >::(fun _ ->  assert_equal 130 
-                               ( grid1 |> get_score));      
-  "Check instructions" >::(fun _ ->  assert_equal 
-                              "This is just a 3x3 grid with randomly colored squares."
-                              ( grid1 |> get_instructions));     
+  "Check winning" >:: 
+  (fun _ -> assert 
+    (let state = state1 |> color Green |> move |> color Green 
+                 |> move |> color Red in check_win state grid1));
+  "Check steps left" >::
+  (fun _ ->  assert_equal 49 
+      ( move state1 |> get_steps));
+  "Check initial score" >::
+  (fun _ ->  assert_equal 130 
+      ( grid1 |> get_score));      
+  "Check instructions" >::
+  (fun _ ->  assert_equal 
+      "This is just a 3x3 grid with randomly colored squares."
+      ( grid1 |> get_instructions));     
 
 ]
 
