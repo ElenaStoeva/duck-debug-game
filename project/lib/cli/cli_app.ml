@@ -1,3 +1,7 @@
+(** 
+   Command Line Interface module for game play. Called by executable [app.ml]
+*)
+
 open View
 
 (** [read_user_code st gr] is a move stream resulting from parsing user's 
@@ -26,6 +30,10 @@ let rec run_simulation ct =
   | ""
   | "n" -> match_result ct
   | _ -> print_string "\nInvalid command.\n"; run_simulation ct
+
+(** [match_result ct] pattern matches on game result after each step of 
+    simulation and responds appropriately by printing messages and/or prompting
+    user to keep stepping the simulation. *)
 and match_result ct =
   try
     begin
