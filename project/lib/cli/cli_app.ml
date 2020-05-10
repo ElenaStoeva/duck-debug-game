@@ -53,12 +53,12 @@ let rec init_game () =
     run_simulation (read_user_code ct) in
   match read_line () with
   | exception End_of_file -> ()
-  | "0" -> run "resources/json_files/example.json"
-  | "1" -> run "resources/json_files/level1.json"
-  | "2" -> run "resources/json_files/level2.json"
-  | "3" -> run "resources/json_files/level3.json"
-  | "4" -> run "resources/json_files/level4.json"
-  | "99" -> run "resources/json_files/level99.json"
+  | "1" -> run "resources/json_files/level5.json"
+  | "2" -> run "resources/json_files/level6.json"
+  | "3" -> run "resources/json_files/level7.json"
+  | "4" -> run "resources/json_files/level9.json"
+  | "5" -> run "resources/json_files/level8.json"
+  | "6" -> run "resources/json_files/level4.json"
   | "q" -> ()
   | _-> begin 
       print_string "\nUnrecognized level. Please enter valid command: \n"; 
