@@ -1,570 +1,570 @@
 {
-  "instructions": "The shortest solution that we found for this level consists of 18 letters/numbers\n (punctuation and spaces don't count). Our soulution corresponds to 100 points.\n If you manage to find a better solution, you will get extra points. Good luck!",
+  "instructions": "The shortest solution that we found for this level consists of 55 letters/numbers\n (punctuation and spaces don't count). Our soulution corresponds to 100 points.\n If you manage to find a better solution, you will get extra points. Good luck!",
   "size": 10,
-  "shortest_solution": 18,
-  "steps": 200,
+  "shortest_solution": 55,
+  "steps": 500,
   "agent": {
-    "agent_x": 4,
-    "agent_y": 3,
-    "orientation": "N"
+    "agent_x": 3,
+    "agent_y": 6,
+    "orientation": "E"
   },
   "start_squares": [
     {
       "x": 1,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 4,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 5,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 6,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 7,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 8,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 9,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 2,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 2,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 2,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 2,
       "y": 4,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 2,
       "y": 5,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 2,
       "y": 6,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 2,
       "y": 7,
-      "attribute": "blue"
+      "attribute": "wall"
     },
     {
       "x": 2,
       "y": 8,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 2,
       "y": 9,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 2,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 3,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 3,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 3,
       "y": 3,
+      "attribute": "green"
+    },
+    {
+      "x": 3,
+      "y": 4,
+      "attribute": "green"
+    },
+    {
+      "x": 3,
+      "y": 5,
       "attribute": "wall"
     },
     {
       "x": 3,
-      "y": 4,
-      "attribute": "blue"
-    },
-    {
-      "x": 3,
-      "y": 5,
-      "attribute": "blue"
-    },
-    {
-      "x": 3,
       "y": 6,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 3,
       "y": 7,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 3,
       "y": 8,
-      "attribute": "wall"
+      "attribute": "green"
     },
     {
       "x": 3,
       "y": 9,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 3,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 4,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 4,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 4,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 4,
       "y": 4,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 4,
       "y": 5,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 4,
       "y": 6,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 4,
       "y": 7,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 4,
       "y": 8,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 4,
       "y": 9,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 4,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
       "y": 4,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
       "y": 5,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
       "y": 6,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
       "y": 7,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
       "y": 8,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
       "y": 9,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 6,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 6,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 6,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 6,
       "y": 4,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 6,
       "y": 5,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 6,
       "y": 6,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 6,
       "y": 7,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 6,
       "y": 8,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 6,
       "y": 9,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 6,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 7,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 7,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 7,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 7,
       "y": 4,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 7,
       "y": 5,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 7,
       "y": 6,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 7,
       "y": 7,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 7,
       "y": 8,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 7,
       "y": 9,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 7,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 8,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 8,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 8,
       "y": 3,
-      "attribute": "wall"
+      "attribute": "green"
     },
     {
       "x": 8,
       "y": 4,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 8,
       "y": 5,
-      "attribute": "blue"
-    },
-    {
-      "x": 8,
-      "y": 6,
-      "attribute": "blue"
-    },
-    {
-      "x": 8,
-      "y": 7,
-      "attribute": "blue"
-    },
-    {
-      "x": 8,
-      "y": 8,
       "attribute": "wall"
     },
     {
       "x": 8,
+      "y": 6,
+      "attribute": "green"
+    },
+    {
+      "x": 8,
+      "y": 7,
+      "attribute": "green"
+    },
+    {
+      "x": 8,
+      "y": 8,
+      "attribute": "green"
+    },
+    {
+      "x": 8,
       "y": 9,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 8,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 9,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 9,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 9,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 9,
       "y": 4,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 9,
       "y": 5,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 9,
       "y": 6,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 9,
       "y": 7,
-      "attribute": "blue"
+      "attribute": "wall"
     },
     {
       "x": 9,
       "y": 8,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 9,
       "y": 9,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 9,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 4,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 5,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 6,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 7,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 8,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 9,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     }
   ],
   "winning_squares": [
     {
       "x": 1,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 4,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 5,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 6,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 7,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 8,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 9,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 1,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 2,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 2,
@@ -579,7 +579,7 @@
     {
       "x": 2,
       "y": 4,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 2,
@@ -594,7 +594,7 @@
     {
       "x": 2,
       "y": 7,
-      "attribute": "green"
+      "attribute": "wall"
     },
     {
       "x": 2,
@@ -609,62 +609,62 @@
     {
       "x": 2,
       "y": 10,
-      "attribute": "blue"
-    },
-    {
-      "x": 3,
-      "y": 1,
-      "attribute": "blue"
-    },
-    {
-      "x": 3,
-      "y": 2,
       "attribute": "green"
     },
     {
       "x": 3,
+      "y": 1,
+      "attribute": "green"
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "attribute": "blue"
+    },
+    {
+      "x": 3,
       "y": 3,
+      "attribute": "blue"
+    },
+    {
+      "x": 3,
+      "y": 4,
+      "attribute": "blue"
+    },
+    {
+      "x": 3,
+      "y": 5,
       "attribute": "wall"
     },
     {
       "x": 3,
-      "y": 4,
-      "attribute": "green"
-    },
-    {
-      "x": 3,
-      "y": 5,
-      "attribute": "blue"
-    },
-    {
-      "x": 3,
       "y": 6,
       "attribute": "blue"
     },
     {
       "x": 3,
       "y": 7,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 3,
       "y": 8,
-      "attribute": "wall"
+      "attribute": "blue"
     },
     {
       "x": 3,
       "y": 9,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 3,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 4,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 4,
@@ -679,17 +679,17 @@
     {
       "x": 4,
       "y": 4,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 4,
       "y": 5,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 4,
       "y": 6,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 4,
@@ -704,32 +704,32 @@
     {
       "x": 4,
       "y": 9,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 4,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
       "y": 4,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 5,
@@ -749,7 +749,7 @@
     {
       "x": 5,
       "y": 8,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 5,
@@ -759,27 +759,27 @@
     {
       "x": 5,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 6,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 6,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 6,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 6,
       "y": 4,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 6,
@@ -799,7 +799,7 @@
     {
       "x": 6,
       "y": 8,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 6,
@@ -809,12 +809,12 @@
     {
       "x": 6,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 7,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 7,
@@ -829,17 +829,17 @@
     {
       "x": 7,
       "y": 4,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 7,
       "y": 5,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 7,
       "y": 6,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 7,
@@ -854,67 +854,67 @@
     {
       "x": 7,
       "y": 9,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 7,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 8,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 8,
       "y": 2,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 8,
       "y": 3,
-      "attribute": "wall"
+      "attribute": "blue"
     },
     {
       "x": 8,
       "y": 4,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 8,
       "y": 5,
-      "attribute": "blue"
-    },
-    {
-      "x": 8,
-      "y": 6,
-      "attribute": "blue"
-    },
-    {
-      "x": 8,
-      "y": 7,
-      "attribute": "green"
-    },
-    {
-      "x": 8,
-      "y": 8,
       "attribute": "wall"
     },
     {
       "x": 8,
+      "y": 6,
+      "attribute": "blue"
+    },
+    {
+      "x": 8,
+      "y": 7,
+      "attribute": "blue"
+    },
+    {
+      "x": 8,
+      "y": 8,
+      "attribute": "blue"
+    },
+    {
+      "x": 8,
       "y": 9,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 8,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 9,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 9,
@@ -929,7 +929,7 @@
     {
       "x": 9,
       "y": 4,
-      "attribute": "green"
+      "attribute": "blue"
     },
     {
       "x": 9,
@@ -944,7 +944,7 @@
     {
       "x": 9,
       "y": 7,
-      "attribute": "green"
+      "attribute": "wall"
     },
     {
       "x": 9,
@@ -959,57 +959,57 @@
     {
       "x": 9,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 1,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 2,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 3,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 4,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 5,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 6,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 7,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 8,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 9,
-      "attribute": "blue"
+      "attribute": "green"
     },
     {
       "x": 10,
       "y": 10,
-      "attribute": "blue"
+      "attribute": "green"
     }
   ]
 }
