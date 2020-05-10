@@ -1,3 +1,11 @@
+(** 
+    Controller module of the Model-View-Controller design.
+
+    This module defines the controller type and has useful functions to 
+    initialize the game, interpret user code, and step the simulation. It 
+    serves as backend support for the CLI and the GUI.
+*)
+
 (** [InterpreterError] is raised when parsing or evaluation of player code 
     raises an exception.*)
 exception InterpreterError of string
