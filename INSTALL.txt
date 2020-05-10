@@ -1,5 +1,5 @@
 
-WELCOME TO DUCK.ML
+WELCOME TO DUCK DEBUG
 
 Instructions for Running and Playing the Game:
 
