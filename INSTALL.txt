@@ -89,6 +89,12 @@ Comments on documentation:
     app.ml is a 2line script that executes the code and is not a part of our
     public signatures.
 
+  - We seperated our module into sub directories and therefore we access
+    functions via their full path in our code (Ex. Interpreter.Eval.parse).
+    Therefore in the documentation, interpreter for example does not have a 
+    comments as it is made out of further sub modules. Each module, however,
+    does have a documentation when you click on the hyperlink.
+
 Comments on code:
   - The configuration for bisect for dune was written using the code provided
     in the bisect github repository.
