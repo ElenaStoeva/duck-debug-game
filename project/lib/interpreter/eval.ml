@@ -84,7 +84,7 @@ let rec prepend
   | [] -> str
   | FunApp (id, clst) :: t -> begin match substitute env id clst with
       | [] -> prepend env t str
-      | FunApp (i,c) :: tt -> prepend env (FunApp (i,c) :: tt) str
+      | FunApp (i,c) :: tt -> prepend env ((Ast.FunApp(i,c) :: tt) @ t) str
       | VarApp (_) :: _ -> failwith "variables are only allowed in definions"
       | hh :: tt -> Cons(hh, lazy (prepend env (tt @ t) str))
     end
