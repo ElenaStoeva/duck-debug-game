@@ -1,3 +1,18 @@
+(** Test plan for the system:
+
+    We tested the Interpreter, the Grid module, and the State module by OUnit
+     tests and the GUI - manually.
+
+    The OUnit tests were developed by both Black box testing and Glass box testing.
+    Accordingly, each member performed Glass box testing on the modules that they
+    implemented and Black box testing on the rest of the modules.
+    We also used Bisect, trying to maximize the coverage for each of the modules.
+
+    For the Black box testing, we believe that our tests cover not only the 
+    typical cases but also most of the possible boundary cases. Also, Bisect
+     helped us improve the Glass box testing a lot. Thus, we believe that our
+    testing approach demonstrates the correctness of our system. *)
+
 open OUnit2
 open Interpreter.Ast
 open Interpreter.Eval
@@ -12,6 +27,7 @@ let make_parse_test
   name >:: (fun _ ->
       assert_equal expected_ast (parse program))
 
+(** Test suite or Interpreter *)
 let parser_tests = [
   make_parse_test "Empty prog" "" (Prog ([],[]));
   make_parse_test "Empty chars" "   " (Prog ([],[]));
@@ -109,17 +125,25 @@ let eval_tests = [
     (parse "f=1M2RM3[f];123[f]");
   "Check undefined function" >:: 
   (fun _ ->  OUnit2.assert_raises Undefined_function (fun () -> "f=MRM;[g]"|> parse |> check_ast););
+  "Check undefined color" >:: 
+  (fun _ ->  OUnit2.assert_raises Undefined_color (fun () -> "f=M5M;[f]"|> parse |> check_ast););
 ]
 
-let grid = "../../../../resources/json_files/example_with_walls.json" |> Yojson.Basic.from_file |> from_json
+(** A grid with obstacles*)
+let grid1 = "../../../../resources/json_files/example_with_walls.json" |> Yojson.Basic.from_file |> from_json
+
+(** A grid without obstacles*)
+let grid2 = "../../../../resources/json_files/example.json" |> Yojson.Basic.from_file |> from_json
 
 (** Position (1,1,N) *)
-let state1 = init_state grid
+let state1 = init_state grid1
 
-(** Test suit for State *)
+(** Test suite for State *)
 let state_tests = [
-  "Check initial agent position" >:: 
-  (fun _ ->  assert_equal (1,1) (get_agent_x grid,get_agent_y grid));
+  "Check initial agent position1" >:: 
+  (fun _ ->  assert_equal (1,1) (get_agent_x grid1,get_agent_y grid1));
+  "Check initial agent position2" >:: 
+  (fun _ ->  assert_equal (1,1,W) (grid2 |> init_state |> get_agent));
   "Check moving to north" >:: 
   (fun _ ->  assert_equal (1,2,N) ( state1 |> move |> get_agent));
   "Check moving to south" >:: 
@@ -139,16 +163,16 @@ let state_tests = [
                                                              turn Right 
                                                              |> color Blue  
                                                              |> move ));
-  "Check moving off the grid from west" >:: 
+  "Check moving off the grid1 from west" >:: 
   (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> state1 |> turn Left |> 
                                                           move));
-  "Check moving off the grid from north" >:: 
+  "Check moving off the grid1 from north" >:: 
   (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> state1 |> move |>
                                                           move |> move));   
-  "Check moving off the grid from east" >:: 
+  "Check moving off the grid1 from east" >:: 
   (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> state1 |> turn Left |> 
                                                           move |> move |> move));   
-  "Check moving off the grid from south" >:: 
+  "Check moving off the grid1 from south" >:: 
   (fun _ ->  OUnit2.assert_raises Invalid_move (fun () -> state1 |> turn Left |> 
                                                           turn Left |> move));                                               
   "Check turning left from west" >:: (fun _ ->  assert_equal (1,1,S) 
@@ -163,15 +187,22 @@ let state_tests = [
   "Check turning left from south" >:: (fun _ ->  assert_equal (1,1,E) 
                                           (state1 |> turn Left|> turn Left |>
                                            turn Left |> get_agent));                                                           
-  "Check no winning" >:: (fun _ -> assert (not (check_win state1 grid)));
+  "Check no winning" >:: (fun _ -> assert (not (check_win state1 grid1)));
   "Check winning" >:: (fun _ -> assert (let state = state1 |> color Green 
                                                     |> move |> color Green |> 
                                                     move |> color Red 
-                                        in check_win state grid));
+                                        in check_win state grid1));
   "Check steps left" >::(fun _ ->  assert_equal 49 
                             ( move state1 |> get_steps));
+  "Check initial score" >::(fun _ ->  assert_equal 130 
+                               ( grid1 |> get_score));      
+  "Check instructions" >::(fun _ ->  assert_equal 
+                              "This is just a 3x3 grid with randomly colored squares."
+                              ( grid1 |> get_instructions));     
+
 ]
 
+(** Full test suite for the system*)
 let suite =
   "test suite for Interpreter"  >::: List.flatten [
     parser_tests;
