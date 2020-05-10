@@ -34,7 +34,7 @@ winning state.
 
 - When prompted to pick level, enter "1", "2", "3", "4" or "5". A supplemental
   documentation explaining each level and their solutions are added as a
-  "level.pdf" in the project directory.
+  "solutions.pdf" in the project directory.
 
 - To write code that would solve the given task, either write it in the textbox
   on the lower left corner or the terminal in cli. It is possible to come up 
