@@ -1,3 +1,7 @@
+(** 
+    Graphical User Interface module for game play. Called by executable gui_app.
+*)
+
 
 (** [t] represents the graphical user interface. It includes fields referring
     each componenets outlined below as:

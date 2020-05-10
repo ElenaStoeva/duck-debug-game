@@ -36,16 +36,20 @@ let new_position st =
   let y = st.agent.y in
   match st.agent.current_orien with
   | N -> if y = st.size then raise Invalid_move
-    else if (Grid.get_att_from_coord st.current_grid x (y+1))= Wall then raise Wall_exception
+    else if (Grid.get_att_from_coord st.current_grid x (y+1))= Wall 
+    then raise Wall_exception
     else (x,y+1)
   | E -> if x = st.size then raise (Invalid_move)
-    else if (Grid.get_att_from_coord st.current_grid (x+1) y) = Wall then raise Wall_exception
+    else if (Grid.get_att_from_coord st.current_grid (x+1) y) = Wall 
+    then raise Wall_exception
     else (x+1,y)
   | W -> if x = 1 then raise (Invalid_move )
-    else if (Grid.get_att_from_coord st.current_grid (x-1) y) = Wall then raise Wall_exception
+    else if (Grid.get_att_from_coord st.current_grid (x-1) y) = Wall 
+    then raise Wall_exception
     else (x-1,y) 
   | S -> if y = 1  then raise (Invalid_move)
-    else if (Grid.get_att_from_coord st.current_grid x (y-1)) = Wall then raise Wall_exception
+    else if (Grid.get_att_from_coord st.current_grid x (y-1)) = Wall 
+    then raise Wall_exception
     else (x,y-1)
 
 let move st = 
@@ -128,7 +132,8 @@ let check_win st g = helper_check_win (Grid.get_winning_grid g) st.current_grid
 
 let get_agent st = st.agent.x, st.agent.y, st.agent.current_orien
 
-let get_current_color st = Grid.get_att_from_coord st.current_grid st.agent.x st.agent.y
+let get_current_color st = Grid.get_att_from_coord st.current_grid st.agent.x 
+    st.agent.y
 
 let get_steps st = st.steps_left
 
