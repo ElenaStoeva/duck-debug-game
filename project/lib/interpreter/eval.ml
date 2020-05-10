@@ -82,8 +82,11 @@ let rec prepend
     (str : move_stream) : move_stream =
   match lst with
   | [] -> str
-  | FunApp (id, clst) :: t -> begin
-      prepend env (substitute env id clst) (prepend env t str)
+  | FunApp (id, clst) :: t -> begin match substitute env id clst with
+      | [] -> prepend env t str
+      | FunApp (i,c) :: tt -> prepend env (FunApp (i,c) :: tt) str
+      | VarApp (_) :: _ -> failwith "variables are only allowed in definions"
+      | hh :: tt -> Cons(hh, lazy (prepend env (tt @ t) str))
     end
   | VarApp (_) :: _ -> failwith "variables are only allowed in definions"
   | h::t -> Cons(h, lazy (prepend env t str))
