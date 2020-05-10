@@ -70,7 +70,8 @@ let match_prim st m = match m with
 
 (** [calc_score t] is player's score calculated by  *)
 let calc_score t =
-  let ignore_ws = Str.global_replace (Str.regexp "[' ' '\t']+") "" in
+  let ignore_ws = Str.global_replace 
+      (Str.regexp "[' ' '\t' '[' ']' '-' ';' '=']+") "" in
   let trimmed_str = ignore_ws t.program in
   (Grid.get_score t.grid) - (String.length trimmed_str)
 
