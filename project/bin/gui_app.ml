@@ -87,6 +87,7 @@ let main str =
   let fl = match read_line () with
     | exception End_of_file -> Stdlib.exit 0
     | "1" -> "resources/json_files/level4.json"
+    | "2" -> "resources/json_files/level5.json"
     | "q" -> Stdlib.exit 0 
     | _ -> print_endline "Unrecognized level."; Stdlib.exit 0 in
 
