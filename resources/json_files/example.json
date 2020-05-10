@@ -6,7 +6,7 @@
   "agent": {
     "agent_x": 1,
     "agent_y": 1,
-    "orientation": "N"
+    "orientation": "W"
   },
   "start_squares": [
     {
