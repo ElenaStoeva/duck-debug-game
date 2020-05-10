@@ -20,8 +20,8 @@ bisect:
 docs:
 	dune build @doc
 
-zip:
-	zip -v -r project_src.zip ./project ./json_files dune-project project.opam Makefile INSTALL.txt 
+zip: clean
+	zip -v -r project_src.zip ./project ./resources LOC.txt INSTALL.txt Makefile Solutions.pdf 
 
 clean:
 	dune clean
