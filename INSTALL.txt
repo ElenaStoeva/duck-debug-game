@@ -1,4 +1,6 @@
 
+WELCOME TO DUCK.ML
+
 Instructions for Running and Playing the Game:
 
 Game objective: Write code to move agent on a grid and achieve the indicated 
