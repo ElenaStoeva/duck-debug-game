@@ -83,14 +83,15 @@ let handle_play (gui : View.Gui.t) () =
 (** [main ()] initializes and starts the graphical user interface. *)
 let main str =
   print_string str;
-  print_endline "\nEnter level number (1-4) or (q) to quit:";
+  print_endline "\nEnter level number (1,2,3,4,5,6) or (q) to quit:";
   let fl = match read_line () with
     | exception End_of_file -> Stdlib.exit 0
     | "1" -> "resources/json_files/level5.json"
     | "2" -> "resources/json_files/level6.json"
     | "3" -> "resources/json_files/level7.json"
-    | "4" -> "resources/json_files/level8.json"
-    | "5" -> "resources/json_files/level4.json"
+    | "4" -> "resources/json_files/level9.json"
+    | "5" -> "resources/json_files/level8.json"
+    | "6" -> "resources/json_files/level4.json"
     | "q" -> Stdlib.exit 0 
     | _ -> print_endline "Unrecognized level."; Stdlib.exit 0 in
 

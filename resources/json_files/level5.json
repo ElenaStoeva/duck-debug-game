@@ -2,7 +2,11 @@
   "instructions": "The shortest solution that we found for this level consists of 18 letters/numbers\n (punctuation and spaces don't count). Our soulution corresponds to 100 points.\n If you manage to find a better solution, you will get extra points. Good luck!",
   "size": 10,
   "shortest_solution": 18,
+<<<<<<< HEAD
+  "steps": 1000,
+=======
   "steps": 200,
+>>>>>>> 10a5ec869a39ab58a4d926878c08dbbce870499f
   "agent": {
     "agent_x": 4,
     "agent_y": 3,

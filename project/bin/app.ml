@@ -11,5 +11,5 @@ let () =
      Color Square Green\n'3' - Color Square Blue\n\
      'f=' - define function f\n'[f]' - call function f\n\
      ';' - seperator between function definitions.\n\
-     Please enter a level number (1,2,3) to play, or (q) to quit: \n" in
+     Please enter a level number (1,2,3,4,5,6) to play, or (q) to quit: \n" in
   if Sys.argv.(1) = "cli" then Cli_app.main instr else Gui_app.main instr
