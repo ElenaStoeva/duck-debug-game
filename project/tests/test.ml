@@ -1,12 +1,14 @@
 (** Test plan for the system:
 
     We tested the Interpreter, the Grid module, and the State module by OUnit
-     tests and the GUI - manually.
+     tests. We manually tested the game interfaces CLI and the GUI, and their 
+     backend support module Controller.
 
-    The OUnit tests were developed by both Black box testing and Glass box testing.
-    Accordingly, each member performed Glass box testing on the modules that they
-    implemented and Black box testing on the rest of the modules.
-    We also used Bisect, trying to maximize the coverage for each of the modules.
+    The OUnit tests were developed by both Black box testing and Glass box 
+    testing. Accordingly, each member performed Glass box testing on the 
+    modules that they implemented and Black box testing on the rest of the 
+    modules. We also used Bisect, trying to maximize the coverage for each 
+    of the modules.
 
     For the Black box testing, we believe that our tests cover not only the 
     typical cases but also most of the possible boundary cases. Also, Bisect

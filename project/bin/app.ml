@@ -1,3 +1,6 @@
+open Cli
+open Gui
+
 let () = 
   let instr = 
     "Welcome.\n\
