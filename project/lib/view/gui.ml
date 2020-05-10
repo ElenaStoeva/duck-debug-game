@@ -62,7 +62,7 @@ let update m glist agent =
     | x, y, Model.Grid.Blue -> 
       m.(x-1).(y-1)#set_file (img_file x y agent "b.png"); e
     | x, y, Model.Grid.Wall -> 
-      m.(x-1).(y-1)#set_file (img_file x y agent "w.png"); e in
+      m.(x-1).(y-1)#set_file (img_file x y agent "o.png"); e in
   glist |> List.map f |> ignore
 
 let initialize_grid (grid : GPack.grid) =

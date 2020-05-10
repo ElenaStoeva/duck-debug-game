@@ -1,5 +1,5 @@
 {
-  "instructions": "Welcome! This level requires a solution less than 22 characters. Good luck!",
+  "instructions": "Welcome! This level requires a solution with less than 22 characters. Good luck!",
   "size": 10,
   "shortest_solution": 22,
   "steps": 1000,
