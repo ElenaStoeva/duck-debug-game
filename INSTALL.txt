@@ -1,5 +1,5 @@
 
-WELCOME TO DUCK DEBUG
+WELCOME TO DuckDebug!
 
 Instructions for Running and Playing the Game:
 
