@@ -1,5 +1,5 @@
 (** 
-    Graphical User Interface module for game play. Called by executable gui_app.
+    Display module for GUI. Called by gui_app.
 *)
 
 

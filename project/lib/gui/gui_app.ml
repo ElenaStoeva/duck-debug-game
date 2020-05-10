@@ -1,3 +1,7 @@
+(** 
+   Graphical User Interface module for game play. Called by executable [app.ml]
+*)
+
 open GMain
 
 (** [handle_next gui ()] is the handler function for the button [next].

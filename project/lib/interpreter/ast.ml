@@ -1,4 +1,4 @@
-(** The abstract syntax tree description of the game language. *)
+(** Ast module is the abstract syntax tree description of the game language. *)
 
 
 (** The type of commands in language *)
