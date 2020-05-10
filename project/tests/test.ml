@@ -13,7 +13,11 @@
     For the Black box testing, we believe that our tests cover not only the 
     typical cases but also most of the possible boundary cases. Also, Bisect
      helped us improve the Glass box testing a lot. Thus, we believe that our
-    testing approach demonstrates the correctness of our system. *)
+    testing approach demonstrates the correctness of our system. 
+    
+    We tested the remaining system manually as the controller and the 
+    applications worked as a unit and testing their isolated parts independently
+    was not better than manually testing the application. *)
 
 open OUnit2
 open Interpreter.Ast
