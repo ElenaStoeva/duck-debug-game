@@ -88,7 +88,8 @@ let from_json json = {
       |> to_list 
       |> List.map square_of_json
     );
-  shortest_solution = Yojson.Basic.Util.(json |> member "shortest_solution" |> to_int);
+  shortest_solution = Yojson.Basic.Util.(json |> member "shortest_solution" 
+                                         |> to_int);
   max_steps = Yojson.Basic.Util.(json |> member "steps" |> to_int);
 }
 
