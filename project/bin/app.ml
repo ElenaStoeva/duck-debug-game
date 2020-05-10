@@ -3,7 +3,7 @@ open Gui
 
 let () = 
   let instr = 
-    "Welcome.\n\
+    "Welcome to DuckDebug!\n\
      Game objective:\nWrite code to move agent and achieve winning state.\n\
      Game language syntax:\n\
      'M' - Move Forward\n'R' - Turn Right\n'L' - Turn Left\n\
